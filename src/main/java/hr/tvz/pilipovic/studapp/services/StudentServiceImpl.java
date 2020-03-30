@@ -1,12 +1,14 @@
 package hr.tvz.pilipovic.studapp.services;
 
 import hr.tvz.pilipovic.studapp.entities.Student;
+import hr.tvz.pilipovic.studapp.entities.StudentCommand;
 import hr.tvz.pilipovic.studapp.entities.StudentDTO;
 import hr.tvz.pilipovic.studapp.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,8 +27,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentDTO findStudentByJMBAG(final String JMBAG) {
-        return studentRepository.findStudentByJMBAG(JMBAG).map(this::mapStudentToDTO).orElse(null);
+    public Optional<StudentDTO> findStudentByJMBAG(final String JMBAG) {
+        return studentRepository.findStudentByJMBAG(JMBAG).map(this::mapStudentToDTO);
     }
 
     private StudentDTO mapStudentToDTO(final Student student) {
@@ -37,6 +39,17 @@ public class StudentServiceImpl implements StudentService {
         return dateOfBirth.plusYears(YEARS_AFTER_WHICH_TUITION_SHOULD_BE_PAYED).isBefore(LocalDate.now());
     }
 
+    @Override
+    public Optional<StudentDTO> save(StudentCommand student) {
+
+        return studentRepository.save(student).map(this::mapStudentToDTO);
+    }
+
+    @Override
+    public void deleteByJMBAG(String jmbag) {
+          studentRepository.deleteByJMBAG(jmbag);
+    }
+
     /*
     LAB 1
     @Override
@@ -45,13 +58,6 @@ public class StudentServiceImpl implements StudentService {
        lista=lista.stream().filter(s -> s.isTuitionShouldBePaid()==true).collect(Collectors.toList());
        return lista;
     }
+*/
 
-    @Override
-    public List<StudentDTO> findStudentByYear(int godina) {
-        List<Student> lista=  studentRepository.findAll().stream().filter(s -> s.getDateOfBirth().getYear()<godina).collect(Collectors.toList());
-        List<StudentDTO> rj=lista.stream().map(this::mapStudentToDTO).collect(Collectors.toList());
-        return rj;
-    }
-
-     */
 }

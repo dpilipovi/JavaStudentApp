@@ -1,6 +1,10 @@
 package hr.tvz.pilipovic.studapp.entities;
 
 
+import org.springframework.http.ResponseEntity;
+
+import java.util.Optional;
+
 public class StudentDTO {
 
     private final String JMBAG;
@@ -30,5 +34,6 @@ public class StudentDTO {
                 ", tuitionShouldBePaid=" + tuitionShouldBePaid +
                 '}';
     }
+
 }
 

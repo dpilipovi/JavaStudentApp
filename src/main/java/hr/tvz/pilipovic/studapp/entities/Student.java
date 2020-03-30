@@ -61,4 +61,15 @@ public class Student {
     public void setJMBAG(String JMBAG) {
         this.JMBAG = JMBAG;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", numberOfECTS=" + numberOfECTS +
+                ", dateOfBirth=" + dateOfBirth +
+                ", JMBAG='" + JMBAG + '\'' +
+                '}';
+    }
 }
