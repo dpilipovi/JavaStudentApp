@@ -44,8 +44,14 @@ public class MockStudentRepository implements StudentRepository {
     }
 
     @Override
-    public void deleteByJMBAG(String jmbag) {
-        MOCKED_STUDENTS=MOCKED_STUDENTS.stream().filter(student -> student.getJMBAG() != jmbag).collect(Collectors.toList());
+    public boolean deleteByJMBAG(String jmbag) {
+        if(containsJMBAG(jmbag))
+        {
+            //System.out.println(jmbag);
+            MOCKED_STUDENTS=MOCKED_STUDENTS.stream().filter(student -> !student.getJMBAG().equals(jmbag)).collect(Collectors.toList());
+            return true;
+        }
+        return false;
         //MOCKED_STUDENTS.removeIf(s -> s.getJMBAG() == jmbag);
     }
 
@@ -54,6 +60,10 @@ public class MockStudentRepository implements StudentRepository {
     }
 
     private boolean containsJMBAG(String JMBAG){
+
+        //MOCKED_STUDENTS.stream().forEach(s -> System.out.println(s.getJMBAG()));
+        //System.out.println(MOCKED_STUDENTS.stream().filter(s -> s.getJMBAG().equals(JMBAG)).findFirst().isPresent());
+
         return MOCKED_STUDENTS.stream().filter(s -> s.getJMBAG().equals(JMBAG)).findFirst().isPresent();
     }
 

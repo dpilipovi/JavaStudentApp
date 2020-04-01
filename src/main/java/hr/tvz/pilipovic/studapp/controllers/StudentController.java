@@ -34,7 +34,7 @@ public class StudentController {
         return studentService.findStudentByJMBAG(JMBAG)
                 .map(
                 student -> ResponseEntity
-                        .status(HttpStatus.CREATED)
+                        .status(HttpStatus.OK)
                         .body(student))
                 .orElseGet(
                         () -> ResponseEntity
@@ -59,9 +59,14 @@ public class StudentController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{JMBAG}")
-    public void delete(@PathVariable String JMBAG){
-        studentService.deleteByJMBAG(JMBAG);
+    public ResponseEntity delete(@PathVariable String JMBAG){
+      boolean response = studentService.deleteByJMBAG(JMBAG);
+
+      if(response) return ResponseEntity.status(HttpStatus.OK).build();
+      else  return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+
 
     /* LAB 1
     @GetMapping("/neplacaju")

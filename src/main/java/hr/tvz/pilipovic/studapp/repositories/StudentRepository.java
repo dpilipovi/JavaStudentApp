@@ -20,5 +20,6 @@ public interface StudentRepository {
 
     Optional<Student> save(StudentCommand student);
 
-    void deleteByJMBAG(String jmbag);
+    boolean deleteByJMBAG(String jmbag);
+
 }

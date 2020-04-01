@@ -18,7 +18,8 @@ public interface StudentService {
 
     Optional<StudentDTO> save(StudentCommand command);
 
-    void deleteByJMBAG(String jmbag);
+    boolean deleteByJMBAG(String jmbag);
+
 
 
 
