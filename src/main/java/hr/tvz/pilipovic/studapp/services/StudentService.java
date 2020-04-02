@@ -10,6 +10,7 @@ import java.nio.channels.FileChannel;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface StudentService {
 
     List<StudentDTO> findAll();
