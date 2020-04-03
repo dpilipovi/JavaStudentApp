@@ -1,0 +1,14 @@
+<div *ngIf="student" class="single">
+    <h3 class="side-title">Detalji</h3>
+
+    <div>
+        <span>JMBAG: </span>{{student.jmbag}}
+    </div>
+
+    <div>
+        <span>Broj ECTS bodova: </span>{{student.numberOfECTS}}
+    </div>
+
+    <div *ngIf="student.tuitionShouldBePaid"> Student treba platiti školarinu. </div>
+
+</div>

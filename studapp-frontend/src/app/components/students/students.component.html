@@ -1,0 +1,19 @@
+
+
+<div class="container">
+    <div class="row">
+        <div class="single">
+            <h3 class="side-title">Studenti</h3>
+            <ul class="list-unstyled">
+                <li *ngFor="let student of students"
+                (click)="onSelect(student)"
+                [class.selected]="student === selectedStudent">
+                <span class="pull-right">{{student.jmbag}}</span> {{student.numberOfECTS}} ECTS
+           </li>
+            </ul>
+       </div>
+   
+
+<app-student-detail [student]="selectedStudent"></app-student-detail>
+</div> 
+</div>
