@@ -9,6 +9,8 @@ styleUrls: ['./students.component.css']
 export class StudentsComponent implements OnInit {
 students: Student[];
 selectedStudent: Student;
+selectedEcts: number;
+
 constructor(private studentService: StudentService) { }
 
 ngOnInit(): void {
@@ -20,7 +22,8 @@ ngOnInit(): void {
   }
   onSelect(student: Student): void {
   this.selectedStudent = student;
+  this.selectedEcts = student.numberOfECTS;
   }
-  
+
 
 }
