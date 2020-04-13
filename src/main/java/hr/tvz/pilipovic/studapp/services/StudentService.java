@@ -21,6 +21,8 @@ public interface StudentService {
 
     boolean deleteByJMBAG(String jmbag);
 
+    Optional<StudentDTO> editEcts(int brojEcts, String Jmbag);
+
 
 
 

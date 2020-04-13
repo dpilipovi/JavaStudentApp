@@ -1,8 +1,6 @@
 package hr.tvz.pilipovic.studapp.controllers;
 
-import hr.tvz.pilipovic.studapp.entities.Student;
-import hr.tvz.pilipovic.studapp.entities.StudentCommand;
-import hr.tvz.pilipovic.studapp.entities.StudentDTO;
+import hr.tvz.pilipovic.studapp.entities.*;
 import hr.tvz.pilipovic.studapp.repositories.StudentRepository;
 import hr.tvz.pilipovic.studapp.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("student")
+@CrossOrigin("http://localhost:4200")
 public class StudentController {
 
     public final StudentService  studentService;
@@ -53,6 +52,21 @@ public class StudentController {
                 .orElseGet(
                         () -> ResponseEntity
                                 .status(HttpStatus.CONFLICT)
+                                .build()
+                );
+    }
+
+    @PutMapping("/{JMBAG}")
+    public ResponseEntity<StudentDTO> editEcts(@RequestBody int brojEcts, @PathVariable String JMBAG)
+    {
+        return studentService.editEcts(brojEcts,JMBAG)
+                .map(
+                        student -> ResponseEntity
+                                .status(HttpStatus.OK)
+                                .body(student))
+                .orElseGet(
+                        () -> ResponseEntity
+                                .status(HttpStatus.NOT_FOUND)
                                 .build()
                 );
     }

@@ -1,15 +1,36 @@
-<div *ngIf="student" class="single">
-    <h3 class="side-title">Detalji</h3>
+<div class="container">
+  <div *ngIf="student" class="single">
+      <h3 class="side-title">Detalji</h3>
 
-    <div>
-        <span>JMBAG: </span>{{student.jmbag}}
-    </div>
+      <div class="tekst">
+          <span>JMBAG: </span>{{student.jmbag}}
+      </div>
 
-    <div>
-        <span>Broj ECTS bodova: </span>{{student.numberOfECTS}}
-    </div>
+      <div class="tekst">
+          <span>Broj ECTS bodova: </span>{{student.numberOfECTS}} <button *ngIf="!edit" class="btn btn-edit btn-5b icon-edit" (click)="edit=!edit">
+            <span>IZMIJENI</span>
+          </button>
+          <span *ngIf="edit">
+          <input  type="number" #editEcts placeholder="± ects">
+          <button  class="btn btn-confirm btn-5b icon-check" (click)="updateStudentECTS(editEcts.value);editEcts.value=''">
+            <span>POTVRDI</span>
+          </button>
+          <button  class="btn btn-cancel btn-5b icon-abort" (click)="edit=!edit">
+              <span>ODUSTANI</span>
+          </button>
+        </span>
 
-    <div *ngIf="student.tuitionShouldBePaid"> Student treba platiti školarinu. </div>
+      </div>
 
 
+      <div class="tekst" *ngIf="student.tuitionShouldBePaid"> Student treba platiti školarinu. </div>
+
+    <!--<app-studij [ects]="student.numberOfECTS"></app-studij>-->
+      <br>
+      <br>
+      <button class="btn btn-back btn-5b icon-left"  routerLink="/students">
+        <span>Nazad</span>
+      </button>
+
+  </div>
 </div>

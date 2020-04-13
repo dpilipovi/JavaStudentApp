@@ -52,6 +52,11 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
+    @Override
+    public Optional<StudentDTO> editEcts(int brojEcts, String JMBAG) {
+        return studentRepository.editEcts(brojEcts, JMBAG).map(this::mapStudentToDTO);
+    }
+
     /*
     LAB 1
     @Override

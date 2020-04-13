@@ -55,6 +55,14 @@ public class MockStudentRepository implements StudentRepository {
         //MOCKED_STUDENTS.removeIf(s -> s.getJMBAG() == jmbag);
     }
 
+    @Override
+    public Optional<Student> editEcts(int brojEcts, String JMBAG) {
+
+        int ects = MOCKED_STUDENTS.stream().filter(s -> JMBAG.equals(s.getJMBAG())).findFirst().get().getNumberOfECTS();
+        MOCKED_STUDENTS.stream().filter(s -> JMBAG.equals(s.getJMBAG())).findFirst().get().setNumberOfECTS(ects + brojEcts);
+        return findStudentByJMBAG(JMBAG);
+    }
+
     private Student mapStudentCommandToStudent(StudentCommand student) {
         return new Student(student.getFirstName(), student.getLastName(), student.getNumberOfECTS(), student.getDateOfBirth(), student.getJMBAG());
     }

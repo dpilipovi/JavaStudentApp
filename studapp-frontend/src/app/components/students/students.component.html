@@ -1,20 +1,54 @@
-
-
 <div class="container">
-    <div class="row">
-        <div class="single">
-            <h3 class="side-title">Studenti</h3>
-            <ul class="list-unstyled">
-                <li *ngFor="let student of students"
-                (click)="onSelect(student)"
-                [class.selected]="student === selectedStudent">
-                <span class="pull-right">{{student.jmbag}}</span> {{student.numberOfECTS}} ECTS
-           </li>
-            </ul>
-       </div>
-   
+    <div class="single">
+        <h3 class="side-title">Studenti</h3>
+        <div *ngIf="students">
+        <ul class="list-unstyled">
+              <li *ngFor="let student of students">
+              <a class="pull-right left" [routerLink]="['/student-detail',student.jmbag]">{{student.jmbag}} {{student.numberOfECTS}} ECTS  </a>
+              <button class="btn btn-delete btn-5a icon-remove" (click)="deleteStudent(student.jmbag)">
+                <span>izbriši</span>
+              </button><!--<button class="hvr-sweep-to-right">IZBRISI</button>-->
+              </li>
+        </ul>
+      </div>
+  </div>
 
+  <br>
+
+  <div class="single">
+        <h3 class="side-title">Dodaj studenta</h3>
+        <div class="item">
+          <p>Ime i prezime</p>
+          <div class="name-item">
+            <input type="text" #firstName placeholder="Ime"  required />
+            <input type="text" #lastName placeholder="Prezime" required/>
+          </div>
+        </div>
+        <div class="item">
+          <p>JMBAG</p>
+          <input type="text" #jmbag required  required minlength="10" />
+        </div>
+        <div class="item">
+          <p>ECTS</p>
+          <input type="number" #numberOfECTS max="480" min="0" required/>
+        </div>
+        <div class="item">
+          <p>Datum rođenja</p>
+          <input type="date" #dateOfBirth/>
+        </div>
+        <button class="btn2 btn-add btn-5a icon-add" (click)="addStudent(firstName.value, lastName.value, jmbag.value,
+        +numberOfECTS.value,dateOfBirth.value); firstName.value=''; lastName.value=''; jmbag.value=''; numberOfECTS.value=''">
+          <span>Dodaj</span>
+        </button>
+  </div>
+
+  <br>
+  <br>
+
+
+<!--
 <app-student-detail [student]="selectedStudent"></app-student-detail>
 <app-studij [ects]="selectedEcts"></app-studij>
-</div> 
+ -->
 </div>
+
