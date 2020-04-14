@@ -26,3 +26,31 @@ $studapp-frontend-theme: mat-light-theme($studapp-frontend-primary, $studapp-fro
 // that you are using.
 @include angular-material-theme($studapp-frontend-theme);
 
+.blue-snackbar {
+  background: #2196F3;
+  color:white;
+}
+
+.blue-snackbar .mat-simple-snackbar-action {
+  color: #333333;
+}
+
+.red-snackbar
+{
+  background: #c70021;
+  color:white;
+}
+
+.red-snackbar .mat-simple-snackbar-action {
+  color: #333333;
+}
+
+.green-snackbar
+{
+  background: rgb(0, 189, 0);
+  color:white;
+}
+
+.green-snackbar .mat-simple-snackbar-action {
+  color: #333333;
+}

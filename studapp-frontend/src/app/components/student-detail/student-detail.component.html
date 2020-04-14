@@ -11,7 +11,7 @@
         </button>
         <span *ngIf="edit">
         <input  type="number" #editEcts placeholder="± ects">
-        <button  class="btn btn-confirm btn-5b icon-check" (click)="updateStudentECTS(editEcts.value);editEcts.value='';openSnackBar('Student ects izmijenjen')">
+        <button  class="btn btn-confirm btn-5b icon-check" (click)="updateStudentECTS(editEcts.value);editEcts.value=''">
           <span>POTVRDI</span>
         </button>
         <button  class="btn btn-cancel btn-5b icon-abort" (click)="edit=!edit">

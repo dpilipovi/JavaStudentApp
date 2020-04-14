@@ -9,6 +9,8 @@ import {
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import AOS from 'aos';
+import { Validators, FormControl, FormBuilder, FormGroup } from '@angular/forms';
+
 
 export const MY_FORMATS = {
   parse: {
@@ -43,8 +45,12 @@ export class StudentsComponent implements OnInit {
 students: Student[];
 selectedStudent: Student;
 selectedEcts: number;
+studentAddForm: FormGroup;
 
-constructor(private studentService: StudentService,private _adapter: DateAdapter<any>,private _snackBar: MatSnackBar) { }
+submitted = false;
+
+
+constructor(private studentService: StudentService,private _adapter: DateAdapter<any>,private _snackBar: MatSnackBar,public fb: FormBuilder) { }
 
 /*croatia() {
   this._adapter.setLocale('hr');
@@ -52,9 +58,34 @@ constructor(private studentService: StudentService,private _adapter: DateAdapter
 
 ngOnInit() {
     this.getStudents();
-      AOS.init({
+
+    AOS.init({
       duration: 400,
-      })
+    })
+
+    this.studentAddForm = this.fb.group({
+      firstName: new FormControl('', [
+        Validators.required
+      ]),
+      lastName: new FormControl('', [
+        Validators.required
+      ]),
+      dateOfBirth: new FormControl('', [
+        Validators.required
+      ]),
+      jmbag: new FormControl('', [
+        Validators.required,
+        Validators.pattern(new RegExp('^\\d+$')),
+        Validators.maxLength(10),
+        Validators.minLength(10)
+      ]),
+      numberOfECTS: new FormControl('', [
+        Validators.required,
+        Validators.pattern(new RegExp('^\\d+$')),
+        Validators.max(480),
+        Validators.min(0)
+      ])
+    })
   }
 
   getStudents() {
@@ -68,7 +99,11 @@ ngOnInit() {
   }
 
   addStudent(firstName: string, lastName: string, jmbag: string, numberOfECTS: number, dateOfBirth: String){
-    if (!firstName || ! lastName || !jmbag || !numberOfECTS || !dateOfBirth)  return;
+    if (!firstName || ! lastName || !jmbag || !numberOfECTS || !dateOfBirth)
+    {
+     // this.openErrorSnackBar("Morate popuniti sva polja")
+      return;
+    }
 
     let datum = dateOfBirth.split('.');
     if(datum[0].length<2) datum[0]=this._to2digit(datum[0])
@@ -77,7 +112,16 @@ ngOnInit() {
 
     this.studentService.addStudent({ firstName, lastName, jmbag, numberOfECTS, dateOfBirth } as Student)
     .subscribe(student => {
-    this.students.push(student);
+      if(student)
+      {
+        this.students.push(student);
+        this.openSuccessSnackBar("Student dodan")
+      }
+      else
+      {
+        this.openErrorSnackBar("Student nije dodan, JMBAG nije dobar ili već postoji")
+      }
+
   });
 
   }
@@ -85,16 +129,42 @@ ngOnInit() {
   deleteStudent(jmbag){
     this.studentService.deleteStudent(jmbag)
     this.students = this.students.filter(s => s.jmbag != jmbag)
+    this.openInfoSnackBar("Student izbrisan")
   }
 
   private _to2digit(n: String) {
     return ('00' + n).slice(-2);
   }
 
-  openSnackBar(message: string) {
+  openErrorSnackBar(message: string) {
+    this._snackBar.open(message, 'OK', {
+      duration: 2000,
+      panelClass: ['red-snackbar']
+    });
+  }
+
+  openSuccessSnackBar(message: string) {
+    this._snackBar.open(message, 'OK', {
+      duration: 2000,
+      panelClass: ['green-snackbar']
+    });
+  }
+
+  openInfoSnackBar(message: string) {
     this._snackBar.open(message, 'OK', {
       duration: 2000,
     });
   }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.studentAddForm.invalid) {
+        return;
+    }
+
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.studentAddForm.value))
+}
 
 }

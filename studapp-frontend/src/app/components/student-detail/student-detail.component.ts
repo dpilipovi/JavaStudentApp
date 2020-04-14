@@ -26,14 +26,35 @@ export class StudentDetailComponent implements OnInit {
   updateStudentECTS(ects: number)
   {
     if(!ects) return;
-    this.studentService.updateStudentECTS(this.student.jmbag,/*this.student.numberOfECTS+*/ects*1)
-    this.student.numberOfECTS+=ects*1;
-    this.edit=!this.edit;
+    if(this.studentService.updateStudentECTS(this.student.jmbag,/*this.student.numberOfECTS+*/ects*1))
+    {
+      this.student.numberOfECTS+=ects*1;
+      this.edit=!this.edit;
+      this.openSuccessSnackBar("Student ECTS izmijenjen")
+    }
+    else{
+      this.openErrorSnackBar("Greška")
+    }
+
   }
 
   openSnackBar(message: string) {
     this._snackBar.open(message, 'OK', {
       duration: 2000,
+    });
+  }
+
+  openErrorSnackBar(message: string) {
+    this._snackBar.open(message, 'OK', {
+      duration: 2000,
+      panelClass: ['red-snackbar']
+    });
+  }
+
+  openSuccessSnackBar(message: string) {
+    this._snackBar.open(message, 'OK', {
+      duration: 2000,
+      panelClass: ['green-snackbar']
     });
   }
 
