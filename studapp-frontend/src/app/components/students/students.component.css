@@ -2,53 +2,6 @@
 {
   margin-top:4rem;
 }
-.single {
-    padding: 30px 15px;
-    background: #f5f5f5;
-    border: 1px solid #f0f0f0;
- }
-
-.single h3.side-title {
-    margin: 0;
-    margin-bottom: 10px;
-    padding: 0;
-    font-size: 1.7em;
-    color: #333;
-    text-transform: uppercase;
-}
-
-.single h3.side-title:after {
-    content: '';
-    width: 90px;
-    height: 1px;
-    background: #ff173c;
-    display: block;
-    margin-top: 6px;
-}
-
-.single ul {
-    margin: 0;
-    padding:0;
-    list-style-type: none;
-}
-
-.single li
-{
-    cursor: pointer;
-    padding-top: 2px;
-    font-size:1.1em;
-}
-
-.selected::after
- {
-    content: '';
-    width: 60px;
-    height: 1px;
-    background: #ff173c;
-    display: block;
-    margin-top: 1px;
-    margin-bottom: 2px;
-}
 
 a:hover
 {
@@ -65,7 +18,7 @@ a.left:before {
   content: "";
   position: absolute;
   width: 0;
-  height: 2px;
+  height: 1.5px;
   bottom: 0;
   left: 0;
   background-color: #ff173c;
@@ -321,7 +274,7 @@ a.left:hover:before {
   font-weight: 900;
 }
 
-
+/*
 div, form, input, select, p {
 
   outline: none;
@@ -388,6 +341,16 @@ div, form, input, select, p {
   color: red;
   }
 
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .example-full-width {
+    width: 100%;
+  }
+
   @media (min-width: 568px) {
     .name-item, .city-item {
     display: flex;
@@ -398,3 +361,44 @@ div, form, input, select, p {
     width: calc(50% - 20px);
     }
     }
+*/
+mat-card-title
+{
+  margin-top: 10px;
+  font-size:2rem;
+  margin-bottom:20px;
+}
+
+mat-divider
+{
+  border-color:#ee4561;
+}
+mat-label
+{
+  font-size:1rem;
+}
+
+input
+{
+  font-size:1rem;
+}
+
+.input-width
+{
+  width:300px;
+}
+
+mat-datepicker-toggle
+{
+  font-size:1.5rem;
+}
+
+mat-list-item
+{
+  margin-bottom: 10px;
+}
+
+mat-list-item a
+{
+  font-size:1.3rem;
+}

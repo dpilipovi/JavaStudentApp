@@ -1,4 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import AOS from 'aos';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+
 
 
 @Component({
@@ -8,4 +17,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'studapp-frontend';
+
+  ngOnInit() {
+    AOS.init({
+      duration: 1200,
+    });
+  }
+
+
 }

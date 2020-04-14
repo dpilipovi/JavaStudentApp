@@ -1,9 +1,11 @@
-main{
-    position: relative;
-    top:4rem;
-}
-
 .container
 {
   max-width: 80%;
 }
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

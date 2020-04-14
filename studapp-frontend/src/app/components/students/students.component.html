@@ -1,54 +1,74 @@
-<div class="container">
-    <div class="single">
-        <h3 class="side-title">Studenti</h3>
-        <div *ngIf="students">
-        <ul class="list-unstyled">
-              <li *ngFor="let student of students">
-              <a class="pull-right left" [routerLink]="['/student-detail',student.jmbag]">{{student.jmbag}} {{student.numberOfECTS}} ECTS  </a>
-              <button class="btn btn-delete btn-5a icon-remove" (click)="deleteStudent(student.jmbag)">
-                <span>izbriši</span>
-              </button><!--<button class="hvr-sweep-to-right">IZBRISI</button>-->
-              </li>
-        </ul>
-      </div>
-  </div>
+<div class="container" data-aos="fade-down">
+  <mat-card >
+      <mat-card-title>STUDENTI</mat-card-title>
+      <mat-divider></mat-divider>
+      <br>
+      <div *ngIf="!students || students.length<1">Nema studenata</div>
+      <div *ngIf="students">
+      <mat-list>
+        <mat-list-item *ngFor="let student of students">
+          <a class="pull-right left" [routerLink]="['/student-detail',student.jmbag]">{{student.jmbag}} {{student.numberOfECTS}} ECTS  </a>
+          <button class="btn btn-delete btn-5a icon-remove" (click)="deleteStudent(student.jmbag);openSnackBar('Student izbrisan')">
+            <span>izbriši</span>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-card>
 
-  <br>
+<br>
 
-  <div class="single">
-        <h3 class="side-title">Dodaj studenta</h3>
-        <div class="item">
-          <p>Ime i prezime</p>
-          <div class="name-item">
-            <input type="text" #firstName placeholder="Ime"  required />
-            <input type="text" #lastName placeholder="Prezime" required/>
-          </div>
-        </div>
-        <div class="item">
-          <p>JMBAG</p>
-          <input type="text" #jmbag required  required minlength="10" />
-        </div>
-        <div class="item">
-          <p>ECTS</p>
-          <input type="number" #numberOfECTS max="480" min="0" required/>
-        </div>
-        <div class="item">
-          <p>Datum rođenja</p>
-          <input type="date" #dateOfBirth/>
-        </div>
-        <button class="btn2 btn-add btn-5a icon-add" (click)="addStudent(firstName.value, lastName.value, jmbag.value,
-        +numberOfECTS.value,dateOfBirth.value); firstName.value=''; lastName.value=''; jmbag.value=''; numberOfECTS.value=''">
-          <span>Dodaj</span>
-        </button>
-  </div>
+<mat-card >
+    <mat-card-title>DODAJ STUDENTA</mat-card-title>
+    <mat-divider></mat-divider>
+    <br>
+    <mat-card-content>
+      <mat-form-field class="input-width">
+        <mat-label>Ime</mat-label>
+        <input type="text" matInput #firstName required>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="input-width">
+        <mat-label>Prezime</mat-label>
+        <input matInput #lastName required>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="input-width">
+        <mat-label>JMBAG</mat-label>
+        <input type="text" matInput #jmbag required>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="input-width">
+        <mat-label>ECTS</mat-label>
+        <input matInput #numberOfECTS max="480" min="0" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="input-width">
+        <mat-label>Datum rođenja</mat-label>
+        <input matInput [matDatepicker]="picker" #dateOfBirth required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <button class="btn2 btn-add btn-5a icon-add" (click)="addStudent(firstName.value, lastName.value, jmbag.value,
+      +numberOfECTS.value,dateOfBirth.value); firstName.value=''; lastName.value=''; jmbag.value=''; numberOfECTS.value='';dateOfBirth.value=''; openSnackBar('Student dodan')">
+        <span>Dodaj</span>
+      </button>
+    </mat-card-content>
+ </mat-card>
 
-  <br>
-  <br>
+
+
+
+
+
+
+<br>
+<br>
 
 
 <!--
 <app-student-detail [student]="selectedStudent"></app-student-detail>
 <app-studij [ects]="selectedEcts"></app-studij>
- -->
+-->
 </div>
-

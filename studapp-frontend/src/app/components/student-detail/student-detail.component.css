@@ -1,35 +1,13 @@
-.single {
-    margin-top:50px;
-    padding: 30px 15px;
-    background: #f5f5f5;
-    border: 1px solid #f0f0f0;
-    font-family: Roboto;
- }
+.container
+{
+  margin-top:4rem;
+}
 
- .tekst
- {
-   font-size:1.1rem;
- }
-
- .single h3.side-title {
-  margin: 0;
+span
+{
+  display: inline-block;
   margin-bottom: 10px;
-  padding: 0;
-  font-size: 1.7em;
-  color: #333;
-  text-transform: uppercase;
 }
-
-.single h3.side-title:after {
-  content: '';
-  width: 90px;
-  height: 1px;
-  background: #4917ff;
-  display: block;
-  margin-top: 6px;
-}
-
-
 
 .btn
 {
@@ -241,8 +219,6 @@
 }
 
 
-
-
 .btn-5b:hover span {
 	-webkit-transform: translateX(200%);
 	-moz-transform: translateX(200%);
@@ -295,4 +271,25 @@ input
 {
   margin-left:25px;
   width: 75px;
+}
+
+mat-card-title
+{
+  margin-top: 10px;
+  font-size:2rem;
+  margin-bottom:20px;
+}
+
+mat-divider
+{
+  border-color:#4917ff;
+}
+mat-label
+{
+  font-size:1rem;
+}
+
+mat-card-content
+{
+  font-size:1.3rem;
 }
