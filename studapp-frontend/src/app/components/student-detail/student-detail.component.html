@@ -9,7 +9,6 @@
         <span>Broj ECTS bodova: </span>{{student.numberOfECTS}} <button *ngIf="!edit" class="btn btn-edit btn-5b icon-edit" (click)="edit=!edit">
           <span>IZMIJENI</span>
         </button>
-        <br>
         <span *ngIf="edit">
         <input  type="number" #editEcts placeholder="± ects">
         <button  class="btn btn-confirm btn-5b icon-check" (click)="updateStudentECTS(editEcts.value);editEcts.value='';openSnackBar('Student ects izmijenjen')">
