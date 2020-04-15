@@ -90,7 +90,7 @@ ngOnInit() {
 
   getStudents() {
     this.studentService.getStudents().subscribe(s => this.students=s);
-    console.log(this.students);
+    //console.log(this.students);
   }
 
   onSelect(student: Student) {

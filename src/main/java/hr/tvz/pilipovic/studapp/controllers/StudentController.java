@@ -74,9 +74,8 @@ public class StudentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{JMBAG}")
     public ResponseEntity delete(@PathVariable String JMBAG){
-      boolean response = studentService.deleteByJMBAG(JMBAG);
 
-      if(response) return ResponseEntity.status(HttpStatus.OK).build();
+      if(studentService.deleteByJMBAG(JMBAG)) return ResponseEntity.status(HttpStatus.OK).build();
       else  return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
