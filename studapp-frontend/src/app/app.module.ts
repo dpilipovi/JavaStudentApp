@@ -19,14 +19,17 @@ import { MatIconModule } from  '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
-
+import { LecturerComponent } from './components/lecturer/lecturer.component';
+import { LecturerDetailComponent } from './components/lecturer-detail/lecturer-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     StudentsComponent,
     StudentDetailComponent,
     StudijComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    LecturerComponent,
+    LecturerDetailComponent
 
   ],
   imports: [
@@ -56,7 +59,8 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

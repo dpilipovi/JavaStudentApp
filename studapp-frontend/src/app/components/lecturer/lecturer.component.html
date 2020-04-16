@@ -1,0 +1,16 @@
+
+<div class="container" data-aos="fade-down">
+    <mat-card [class.mat-elevation-z8]="true" >
+        <mat-card-title>PROFESORI</mat-card-title>
+        <mat-divider></mat-divider>
+        <br>
+        <div *ngIf="!lecturers || lecturers.length<1">Nema profesora</div>
+        <div *ngIf="lecturers">
+        <mat-list>
+          <mat-list-item *ngFor="let lecturer of lecturers">
+            <a class="pull-right left" [routerLink]="['/lecturer-detail',lecturer.id]">{{lecturer.firstname}} {{lecturer.lastname}}  </a>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card>
+</div>
