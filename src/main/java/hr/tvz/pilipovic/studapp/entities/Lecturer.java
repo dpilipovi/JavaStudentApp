@@ -27,7 +27,7 @@ public class Lecturer {
     }
 
     public void setFirstname(String firstname) {
-        this.firstname = ime;
+        this.firstname = firstname;
     }
 
     public String getLastname() {

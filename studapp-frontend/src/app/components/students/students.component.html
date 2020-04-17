@@ -6,7 +6,7 @@
       <div *ngIf="!students || students.length<1">Nema studenata</div>
       <div *ngIf="students">
       <mat-list>
-        <mat-list-item *ngFor="let student of students">
+        <mat-list-item *ngFor="let student of students" data-aos="fade-up" >
           <a class="pull-right left" [routerLink]="['/student-detail',student.jmbag]">{{student.jmbag}} {{student.numberOfECTS}} ECTS  </a>
           <button class="btn btn-delete btn-5a icon-remove" (click)="deleteStudent(student.jmbag)">
             <span>izbriši</span>

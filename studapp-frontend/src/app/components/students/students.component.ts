@@ -10,6 +10,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatSnackBar } from '@angular/material/snack-bar';
 import AOS from 'aos';
 import { Validators, FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations'
 
 
 export const MY_FORMATS = {
@@ -37,6 +38,17 @@ providers: [
     deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
   },
   {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS}
+],
+animations: [
+  trigger('deleteAnimation', [
+    transition(':decrement', [
+      query(':leave', [
+        stagger(50, [
+          animate('300ms ease-out', style({ opacity: 0, width: '0px' })),
+        ]),
+      ])
+    ]),
+  ]),
 ]
 })
 
@@ -46,7 +58,6 @@ students: Student[];
 selectedStudent: Student;
 selectedEcts: number;
 studentAddForm: FormGroup;
-
 submitted = false;
 
 
@@ -127,9 +138,12 @@ ngOnInit() {
   }
 
   deleteStudent(jmbag){
-    this.studentService.deleteStudent(jmbag)
+    if(this.studentService.deleteStudent(jmbag))
+    {
     this.students = this.students.filter(s => s.jmbag != jmbag)
     this.openInfoSnackBar("Student izbrisan")
+    }
+    else this.openErrorSnackBar("Student nije izbrisan, doslo je do pogreske na bazi podataka")
   }
 
   private _to2digit(n: String) {

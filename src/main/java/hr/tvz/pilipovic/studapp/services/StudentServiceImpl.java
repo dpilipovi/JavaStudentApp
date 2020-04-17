@@ -3,6 +3,7 @@ package hr.tvz.pilipovic.studapp.services;
 import hr.tvz.pilipovic.studapp.entities.Student;
 import hr.tvz.pilipovic.studapp.entities.StudentCommand;
 import hr.tvz.pilipovic.studapp.entities.StudentDTO;
+import hr.tvz.pilipovic.studapp.repositories.StudentJdbcRepository;
 import hr.tvz.pilipovic.studapp.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
 
     private static final int YEARS_AFTER_WHICH_TUITION_SHOULD_BE_PAYED = 26;
-    private final StudentRepository studentRepository;
+    private final StudentJdbcRepository studentRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository) {
+    public StudentServiceImpl(StudentJdbcRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
