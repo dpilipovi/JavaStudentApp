@@ -32,14 +32,21 @@ public class StudentController {
     public ResponseEntity<StudentDTO> getStudent(@PathVariable String JMBAG){
         return studentService.findStudentByJMBAG(JMBAG)
                 .map(
-                student -> ResponseEntity
-                        .status(HttpStatus.OK)
-                        .body(student))
+                        student -> ResponseEntity
+                                .status(HttpStatus.OK)
+                                .body(student))
                 .orElseGet(
                         () -> ResponseEntity
                                 .status(HttpStatus.NOT_FOUND)
                                 .build()
                 );
+    }
+
+    @GetMapping("/getStudentsByFirstName/{firstname}")
+    public List<StudentDTO>getStudentsByFirstname(@PathVariable String firstname){
+        System.out.println(firstname);
+        return studentService.findStudentByFirstName(firstname);
+
     }
 
     @PostMapping

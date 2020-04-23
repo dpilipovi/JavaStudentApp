@@ -41,6 +41,12 @@ public class StudentJdbcRepository implements StudentRepository {
     }
 
     @Override
+    public List<Student> findStudentByFirstName(String firstname) {
+        firstname+="%";
+        return jdbc.query("SELECT * FROM STUDENTS WHERE LOWER(firstname) like LOWER(?)", new Object[]{firstname},this::mapRowToStudent);
+    }
+
+    @Override
     public Optional<Student> save(StudentCommand student) {
 
         Student s = new Student(student.getFirstName(),student.getLastName(),student.getNumberOfECTS(),student.getDateOfBirth(),student.getJMBAG());

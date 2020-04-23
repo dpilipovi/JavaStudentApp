@@ -23,4 +23,6 @@ public interface StudentRepository {
     boolean deleteByJMBAG(String jmbag);
 
     Optional<Student> editEcts(int brojEcts, String JMBAG);
+
+    List<Student> findStudentByFirstName(String firstname);
 }

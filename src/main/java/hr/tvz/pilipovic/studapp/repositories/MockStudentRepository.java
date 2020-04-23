@@ -63,6 +63,11 @@ public class MockStudentRepository implements StudentRepository {
         return findStudentByJMBAG(JMBAG);
     }
 
+    @Override
+    public List<Student> findStudentByFirstName(String firstname) {
+        return null;
+    }
+
     private Student mapStudentCommandToStudent(StudentCommand student) {
         return new Student(student.getFirstName(), student.getLastName(), student.getNumberOfECTS(), student.getDateOfBirth(), student.getJMBAG());
     }

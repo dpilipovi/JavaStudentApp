@@ -23,6 +23,8 @@ public interface StudentService {
 
     Optional<StudentDTO> editEcts(int brojEcts, String Jmbag);
 
+    List<StudentDTO> findStudentByFirstName(String firstname);
+
 
 
 

@@ -58,6 +58,13 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.editEcts(brojEcts, JMBAG).map(this::mapStudentToDTO);
     }
 
+    @Override
+    public List<StudentDTO> findStudentByFirstName(String firstname) {
+        return studentRepository.findStudentByFirstName(firstname).stream().map(this::mapStudentToDTO).collect(Collectors.toList());
+    }
+
+
+
     /*
     LAB 1
     @Override
