@@ -10,16 +10,16 @@ public class CourseCommand {
     @NotNull(message = "ID must be entered")
     private int id;
     @NotBlank(message = "Naziv must be entered")
-    private String naziv;
+    private String name;
     @NotNull(message = "Number of ECTS points must be entered")
     @Max(message = "Number of ECTS can not be higher than 7", value = 7)
     @Min(message = "Number of ECTS can not be lower than 1", value = 1)
-    private int brojECTS;
+    private int numberOfEcts;
 
-    public CourseCommand(@NotNull(message = "ID must be entered") int id, @NotBlank(message = "Naziv must be entered") String naziv, @NotNull(message = "Number of ECTS points must be entered") @Max(message = "Number of ECTS can not be higher than 7", value = 7) @Min(message = "Number of ECTS can not be lower than 1", value = 1) int brojECTS) {
+    public CourseCommand(@NotNull(message = "ID must be entered") int id, @NotBlank(message = "Name must be entered") String name, @NotNull(message = "Number of ECTS points must be entered") @Max(message = "Number of ECTS can not be higher than 7", value = 7) @Min(message = "Number of ECTS can not be lower than 1", value = 1) int numberOfEcts) {
         this.id = id;
-        this.naziv = naziv;
-        this.brojECTS = brojECTS;
+        this.name = name;
+        this.numberOfEcts = numberOfEcts;
     }
 
     public int getId() {
@@ -30,19 +30,19 @@ public class CourseCommand {
         this.id = id;
     }
 
-    public String getNaziv() {
-        return naziv;
+    public String getName() {
+        return name;
     }
 
-    public void setNaziv(String naziv) {
-        this.naziv = naziv;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getBrojECTS() {
-        return brojECTS;
+    public int getNumberOfEcts() {
+        return numberOfEcts;
     }
 
-    public void setBrojECTS(int brojECTS) {
-        this.brojECTS = brojECTS;
+    public void setNumberOfEcts (int numberOfEcts) {
+        this.numberOfEcts = numberOfEcts;
     }
 }

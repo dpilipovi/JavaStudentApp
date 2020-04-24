@@ -12,7 +12,7 @@ public interface CourseRepository {
 
     List<Course> findAll();
 
-    Optional<Course> findByNaziv(String naziv);
+    Optional<Course> findByName(String name);
 
     Optional<Course> findById(int id);
 

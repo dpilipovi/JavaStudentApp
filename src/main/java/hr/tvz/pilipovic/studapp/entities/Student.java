@@ -2,15 +2,24 @@ package hr.tvz.pilipovic.studapp.entities;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDate;
 
+@Entity
+@Table(name="STUDENTS")
+public class Student implements Serializable {
 
-public class Student {
+    private static final long serialVersionUID = 7950100003761418181L;
+
+    @Id
+    private String JMBAG;
     private String firstName;
     private String lastName;
     private Integer numberOfECTS;
     private LocalDate dateOfBirth;
-    private String JMBAG;
 
     public Student(){}
 

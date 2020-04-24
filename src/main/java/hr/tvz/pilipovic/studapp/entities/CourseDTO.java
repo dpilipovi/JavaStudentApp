@@ -2,27 +2,27 @@ package hr.tvz.pilipovic.studapp.entities;
 
 public class CourseDTO {
 
-    private String naziv;
-    private int brojECTS;
+    private String name;
+    private int numberOfEcts;
 
-    public CourseDTO(String naziv, int brojECTS) {
-        this.naziv = naziv;
-        this.brojECTS = brojECTS;
+    public CourseDTO(String name, int numberOfEcts) {
+        this.name = name;
+        this.numberOfEcts = numberOfEcts;
     }
 
-    public String getNaziv() {
-        return naziv;
+    public String getName() {
+        return name;
     }
 
-    public int getBrojECTS() {
-        return brojECTS;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "CourseDTO{" +
-                "naziv='" + naziv + '\'' +
-                ", brojECTS=" + brojECTS +
-                '}';
+    public int getNumberOfEcts() {
+        return numberOfEcts;
+    }
+
+    public void setNumberOfEcts(int numberOfEcts) {
+        this.numberOfEcts = numberOfEcts;
     }
 }

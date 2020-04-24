@@ -33,8 +33,8 @@ public class MockCourseRepository implements  CourseRepository {
     }
 
     @Override
-    public Optional<Course> findByNaziv(String naziv) {
-        return MOCKED_COURSES.stream().filter(it -> Objects.equals(it.getNaziv(), naziv)).findAny();
+    public Optional<Course> findByName(String name) {
+        return MOCKED_COURSES.stream().filter(it -> Objects.equals(it.getName(), name)).findAny();
     }
 
     @Override
@@ -45,10 +45,10 @@ public class MockCourseRepository implements  CourseRepository {
     @Override
     public Optional<Course> editCourse(CourseCommand courseCommand) {
 
-        if(courseCommand.getBrojECTS()>7 || courseCommand.getBrojECTS()<1) return Optional.empty();
+        if(courseCommand.getNumberOfEcts()>7 || courseCommand.getNumberOfEcts()<1) return Optional.empty();
 
-        MOCKED_COURSES.stream().filter(c -> courseCommand.getId()==(c.getId())).findFirst().get().setNaziv(courseCommand.getNaziv());
-        MOCKED_COURSES.stream().filter(c -> courseCommand.getId()==(c.getId())).findFirst().get().setBrojECTSa(courseCommand.getBrojECTS());
+        MOCKED_COURSES.stream().filter(c -> courseCommand.getId()==(c.getId())).findFirst().get().setName(courseCommand.getName());
+        MOCKED_COURSES.stream().filter(c -> courseCommand.getId()==(c.getId())).findFirst().get().setNumberOfEcts(courseCommand.getNumberOfEcts());
 
         return findById(courseCommand.getId());
 

@@ -19,7 +19,7 @@ public class CourseServiceImpl implements  CourseService{
     }
 
     private CourseDTO mapCourseToDTO(final Course course) {
-        return new CourseDTO(course.getNaziv(), course.getBrojECTSa());
+        return new CourseDTO(course.getName(), course.getNumberOfEcts());
     }
 
     @Override
@@ -28,8 +28,8 @@ public class CourseServiceImpl implements  CourseService{
     }
 
     @Override
-    public Optional<CourseDTO> findByNaziv(String naziv) {
-        return courseRepository.findByNaziv(naziv).map(this::mapCourseToDTO);
+    public Optional<CourseDTO> findByNaziv(String name) {
+        return courseRepository.findByName(name).map(this::mapCourseToDTO);
     }
 
     @Override
