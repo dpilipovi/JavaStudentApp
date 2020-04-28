@@ -2,17 +2,14 @@ package hr.tvz.pilipovic.studapp.entities;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="STUDENTS")
 public class Student implements Serializable {
-
-    private static final long serialVersionUID = 7950100003761418181L;
 
     @Id
     private String JMBAG;
@@ -20,6 +17,21 @@ public class Student implements Serializable {
     private String lastName;
     private Integer numberOfECTS;
     private LocalDate dateOfBirth;
+    @ManyToMany(targetEntity = Course.class)
+    @JoinTable(
+            name = "student_course",
+            joinColumns = { @JoinColumn(name = "student_jmbag", referencedColumnName = "JMBAG", nullable = false), },
+            inverseJoinColumns = { @JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false) }
+    )
+    private List<Course> courses;
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 
     public Student(){}
 

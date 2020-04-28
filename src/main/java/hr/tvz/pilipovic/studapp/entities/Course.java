@@ -22,6 +22,14 @@ public class Course implements Serializable {
     @ManyToMany(targetEntity = Student.class, mappedBy = "courses")
     private List<Student> students;
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     public Course(int id, String name, int numberOfEcts) {
         this.id = id;
         this.name = name;

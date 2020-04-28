@@ -12,7 +12,7 @@ public interface CourseService {
 
     List<CourseDTO> findAll();
 
-    Optional<CourseDTO> findByNaziv(String naziv);
+    Optional<CourseDTO> findByName(String name);
 
     Optional<CourseDTO> findById(int id);
 

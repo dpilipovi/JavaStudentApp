@@ -4,6 +4,7 @@ import hr.tvz.pilipovic.studapp.entities.Student;
 import hr.tvz.pilipovic.studapp.entities.StudentCommand;
 import hr.tvz.pilipovic.studapp.entities.StudentDTO;
 import hr.tvz.pilipovic.studapp.repositories.StudentJdbcRepository;
+import hr.tvz.pilipovic.studapp.repositories.StudentJpaRepository;
 import hr.tvz.pilipovic.studapp.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,10 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
 
     private static final int YEARS_AFTER_WHICH_TUITION_SHOULD_BE_PAYED = 26;
-    private final StudentJdbcRepository studentRepository;
+   // private final StudentJdbcRepository studentRepository;
+    private final StudentJpaRepository studentRepository;
 
-    public StudentServiceImpl(StudentJdbcRepository studentRepository) {
+    public StudentServiceImpl(StudentJpaRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
@@ -29,7 +31,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<StudentDTO> findStudentByJMBAG(final String JMBAG) {
-        return studentRepository.findStudentByJMBAG(JMBAG).map(this::mapStudentToDTO);
+        return Optional.of(mapStudentToDTO(studentRepository.findStudentByJMBAG(JMBAG)));//.map(this::mapStudentToDTO);
     }
 
     private StudentDTO mapStudentToDTO(final Student student) {
@@ -42,8 +44,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<StudentDTO> save(StudentCommand student) {
-
-        return studentRepository.save(student).map(this::mapStudentToDTO);
+       Student s = new Student(student.getFirstName(),student.getLastName(),student.getNumberOfECTS(),student.getDateOfBirth(),student.getJMBAG());
+        return Optional.of(mapStudentToDTO(studentRepository.save(s)));//.map(this::mapStudentToDTO);
     }
 
     @Override
@@ -55,7 +57,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<StudentDTO> editEcts(int brojEcts, String JMBAG) {
-        return studentRepository.editEcts(brojEcts, JMBAG).map(this::mapStudentToDTO);
+        return Optional.of(mapStudentToDTO(studentRepository.editEcts(brojEcts, JMBAG)));//.map(this::mapStudentToDTO);
     }
 
     @Override

@@ -12,8 +12,6 @@ import java.util.Optional;
 public interface StudentRepository {
 
 
-    List<StudentDTO> lista = new ArrayList<>();
-
     List<Student> findAll();
 
     Optional<Student> findStudentByJMBAG(String JMBAG);

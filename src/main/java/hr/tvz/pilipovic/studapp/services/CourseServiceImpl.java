@@ -1,6 +1,7 @@
 package hr.tvz.pilipovic.studapp.services;
 
 import hr.tvz.pilipovic.studapp.entities.*;
+import hr.tvz.pilipovic.studapp.repositories.CourseJpaRepository;
 import hr.tvz.pilipovic.studapp.repositories.CourseRepository;
 import hr.tvz.pilipovic.studapp.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,9 @@ import java.util.stream.Collectors;
 @Service
 public class CourseServiceImpl implements  CourseService{
 
-    private final CourseRepository courseRepository;
+    private final CourseJpaRepository courseRepository;
 
-    public CourseServiceImpl(CourseRepository courseRepository) {
+    public CourseServiceImpl(CourseJpaRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
 
@@ -28,17 +29,17 @@ public class CourseServiceImpl implements  CourseService{
     }
 
     @Override
-    public Optional<CourseDTO> findByNaziv(String name) {
-        return courseRepository.findByName(name).map(this::mapCourseToDTO);
+    public Optional<CourseDTO> findByName(String name) {
+        return Optional.of(mapCourseToDTO(courseRepository.findByName(name)));//.map(this::mapCourseToDTO);
     }
 
     @Override
     public Optional<CourseDTO> findById(int id) {
-        return courseRepository.findById(id).map(this::mapCourseToDTO);
+        return Optional.of(mapCourseToDTO(courseRepository.findById(id)));//.map(this::mapCourseToDTO);
     }
 
     @Override
     public Optional<CourseDTO> editCourse(CourseCommand courseCommand) {
-        return courseRepository.editCourse(courseCommand).map(this::mapCourseToDTO);
+        return Optional.of(mapCourseToDTO(courseRepository.save(courseCommand)));//.map(this::mapCourseToDTO);
     }
 }
