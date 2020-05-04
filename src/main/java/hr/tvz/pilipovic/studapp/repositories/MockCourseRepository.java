@@ -38,7 +38,12 @@ public class MockCourseRepository implements  CourseRepository {
     }
 
     @Override
-    public Optional<Course> findById(int id) {
+    public Optional<Course> findByStudents_JMBAG(String jmbag) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Course> findById(long id) {
        return MOCKED_COURSES.stream().filter(it -> Objects.equals(it.getId(), id)).findAny();
     }
 

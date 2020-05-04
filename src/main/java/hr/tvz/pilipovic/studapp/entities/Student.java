@@ -8,20 +8,24 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name="STUDENTS")
+@Table(name="students")
 public class Student implements Serializable {
 
     @Id
     private String JMBAG;
+    @Column(name="firstname")
     private String firstName;
+    @Column(name="lastname")
     private String lastName;
+    @Column(name="numberofects")
     private Integer numberOfECTS;
+    @Column(name="dateofbirth")
     private LocalDate dateOfBirth;
     @ManyToMany(targetEntity = Course.class)
     @JoinTable(
             name = "student_course",
-            joinColumns = { @JoinColumn(name = "student_jmbag", referencedColumnName = "JMBAG", nullable = false), },
-            inverseJoinColumns = { @JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false) }
+            joinColumns = { @JoinColumn(name = "student_jmbag" /*, referencedColumnName = "JMBAG", nullable = false*/), },
+            inverseJoinColumns = { @JoinColumn(name = "course_id" /*, referencedColumnName = "id", nullable = false*/) }
     )
     private List<Course> courses;
 

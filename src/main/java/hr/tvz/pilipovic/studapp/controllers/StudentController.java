@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-
+//jdbc:h2:mem:testdb
 @RestController
 @RequestMapping("student")
 @CrossOrigin("http://localhost:4200")

@@ -14,7 +14,9 @@ public interface CourseRepository {
 
     Optional<Course> findByName(String name);
 
-    Optional<Course> findById(int id);
+    Optional<Course> findByStudents_JMBAG(String jmbag);
 
     Optional<Course> editCourse(CourseCommand courseCommand);
+
+    Optional<Course> findById(long id);
 }

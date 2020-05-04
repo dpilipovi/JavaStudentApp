@@ -14,7 +14,9 @@ public interface CourseService {
 
     Optional<CourseDTO> findByName(String name);
 
-    Optional<CourseDTO> findById(int id);
+    List<CourseDTO> findByStudents_JMBAG(String jmbag);
 
     Optional<CourseDTO> editCourse(CourseCommand courseCommand);
+
+    Optional<CourseDTO> findById(long id);
 }

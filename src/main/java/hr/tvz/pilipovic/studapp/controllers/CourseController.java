@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("course")
+@CrossOrigin("http://localhost:4200")
 public class CourseController {
 
     public final CourseService courseService;
@@ -26,18 +27,9 @@ public class CourseController {
         return courseService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CourseDTO> getCourseByID(@PathVariable int id){
-        return courseService.findById(id)
-                .map(
-                        course -> ResponseEntity
-                                .status(HttpStatus.OK)
-                                .body(course))
-                .orElseGet(
-                        () -> ResponseEntity
-                                .status(HttpStatus.NOT_FOUND)
-                                .build()
-                );
+    @GetMapping("/{jmbag}")
+    public List<CourseDTO> getCoursesByStudentJmbag(@PathVariable String jmbag){
+        return courseService.findByStudents_JMBAG(jmbag);
     }
 
 
