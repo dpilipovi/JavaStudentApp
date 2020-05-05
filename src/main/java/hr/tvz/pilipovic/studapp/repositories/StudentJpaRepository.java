@@ -5,6 +5,7 @@ import hr.tvz.pilipovic.studapp.entities.StudentCommand;
 import hr.tvz.pilipovic.studapp.services.StudentService;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -24,7 +25,8 @@ public interface StudentJpaRepository extends JpaRepository<Student, String> {
 
     Student save(Student student);
 
-    @Query(value = "update students set numberOfEcts = numberOfEcts + :ects where jmbag = :jmbag",nativeQuery = true)
-    Student editEcts(@Param("ects") int ects, @Param("jmbag") String jmbag);
+    @Modifying
+    @Query(value = "update students set numberofects = numberofects + :ects where jmbag = :jmbag",nativeQuery = true)
+    void editEcts(@Param("ects") int ects, @Param("jmbag") String jmbag);
 
 }

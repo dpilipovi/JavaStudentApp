@@ -57,8 +57,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<StudentDTO> editEcts(int brojEcts, String JMBAG) {
-        //return null;
-         return Optional.of(mapStudentToDTO(studentRepository.editEcts(brojEcts, JMBAG)));//.map(this::mapStudentToDTO);
+        Student s = studentRepository.findStudentByJMBAG(JMBAG);
+        s.setNumberOfECTS(s.getNumberOfECTS()+brojEcts);
+        return Optional.of(mapStudentToDTO((studentRepository.save(s))));
+         //return Optional.of(mapStudentToDTO(studentRepository.editEcts(brojEcts, JMBAG)));//.map(this::mapStudentToDTO);
     }
 
     @Override
