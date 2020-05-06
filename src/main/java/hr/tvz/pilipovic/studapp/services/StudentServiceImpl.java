@@ -50,8 +50,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
 
-    public boolean deleteByJMBAG(String jmbag) {
-         return studentRepository.deleteByJMBAG(jmbag);
+    public long deleteStudentByJMBAG(String jmbag) {
+         return studentRepository.deleteStudentByJMBAG(jmbag);
 
     }
 

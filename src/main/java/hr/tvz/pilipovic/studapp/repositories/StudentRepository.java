@@ -18,7 +18,7 @@ public interface StudentRepository {
 
     Optional<Student> save(StudentCommand student);
 
-    boolean deleteByJMBAG(String jmbag);
+    long deleteStudentByJMBAG(String jmbag);
 
     Optional<Student> editEcts(int brojEcts, String JMBAG);
 

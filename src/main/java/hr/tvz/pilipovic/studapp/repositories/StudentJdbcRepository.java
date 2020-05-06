@@ -63,9 +63,9 @@ public class StudentJdbcRepository implements StudentRepository {
     }
 
     @Override
-    public boolean deleteByJMBAG(String jmbag) {
+    public long deleteStudentByJMBAG(String jmbag) {
         jdbc.update("delete from students where jmbag = ?", jmbag);
-        return true;
+        return 1;
     }
 
     @Override

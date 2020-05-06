@@ -19,7 +19,7 @@ public interface StudentService {
 
     Optional<StudentDTO> save(StudentCommand command);
 
-    boolean deleteByJMBAG(String jmbag);
+    long deleteStudentByJMBAG(String jmbag);
 
     Optional<StudentDTO> editEcts(int brojEcts, String Jmbag);
 
