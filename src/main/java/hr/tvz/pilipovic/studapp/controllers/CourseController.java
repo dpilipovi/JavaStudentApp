@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("course")
 @CrossOrigin("http://localhost:4200")
@@ -31,6 +32,28 @@ public class CourseController {
     public List<CourseDTO> getCoursesByStudentJmbag(@PathVariable String jmbag){
         return courseService.findByStudents_JMBAG(jmbag);
     }
+
+    @GetMapping("/findByName/{name}")
+    public List<CourseDTO> getAllCoursesByName(@PathVariable String name)
+    {
+        return courseService.findCoursesByName(name);
+    }
+
+    @GetMapping("/findCourseByName/{name}")
+    public ResponseEntity<CourseDTO> getCourseByName(@PathVariable String name)
+    {
+        return courseService.findByName(name)
+                .map(
+                        course -> ResponseEntity
+                                .status(HttpStatus.OK)
+                                .body(course))
+                .orElseGet(
+                        () -> ResponseEntity
+                                .status(HttpStatus.NOT_FOUND)
+                                .build()
+                );
+    }
+
 
 
     @PutMapping()

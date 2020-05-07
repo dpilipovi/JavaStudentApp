@@ -25,6 +25,7 @@ public interface StudentService {
 
     List<StudentDTO> findStudentByFirstName(String firstname);
 
+    List<StudentDTO> findByCourses_Name(String name);
 
 
 

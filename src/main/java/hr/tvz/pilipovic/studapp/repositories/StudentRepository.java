@@ -23,4 +23,6 @@ public interface StudentRepository {
     Optional<Student> editEcts(int brojEcts, String JMBAG);
 
     List<Student> findStudentByFirstName(String firstname);
+
+    List<Student> findByCourses_Name(String name);
 }

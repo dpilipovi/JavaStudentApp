@@ -12,11 +12,13 @@ public interface CourseService {
 
     List<CourseDTO> findAll();
 
-    Optional<CourseDTO> findByName(String name);
-
     List<CourseDTO> findByStudents_JMBAG(String jmbag);
 
     Optional<CourseDTO> editCourse(CourseCommand courseCommand);
 
     Optional<CourseDTO> findById(long id);
+
+    List<CourseDTO> findCoursesByName(String name);
+
+    Optional<CourseDTO> findByName(String name);
 }

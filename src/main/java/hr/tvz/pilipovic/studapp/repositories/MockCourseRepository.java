@@ -33,8 +33,9 @@ public class MockCourseRepository implements  CourseRepository {
     }
 
     @Override
-    public Optional<Course> findByName(String name) {
-        return MOCKED_COURSES.stream().filter(it -> Objects.equals(it.getName(), name)).findAny();
+    public List<Course> findByNameIgnoreCaseContaining(String name) {
+       // return MOCKED_COURSES.stream().filter(it -> Objects.equals(it.getName(), name)).findAny();
+        return null;
     }
 
     @Override
@@ -45,6 +46,11 @@ public class MockCourseRepository implements  CourseRepository {
     @Override
     public Optional<Course> findById(long id) {
        return MOCKED_COURSES.stream().filter(it -> Objects.equals(it.getId(), id)).findAny();
+    }
+
+    @Override
+    public Optional<Course> findByName(String name) {
+        return Optional.empty();
     }
 
     @Override

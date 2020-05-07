@@ -1,5 +1,7 @@
 package hr.tvz.pilipovic.studapp.entities;
 
+import java.util.List;
+
 public class CourseDTO {
 
     private String name;

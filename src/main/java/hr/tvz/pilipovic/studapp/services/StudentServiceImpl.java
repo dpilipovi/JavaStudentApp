@@ -68,6 +68,11 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findStudentByFirstName(firstname).stream().map(this::mapStudentToDTO).collect(Collectors.toList());
     }
 
+    @Override
+    public List<StudentDTO> findByCourses_Name(String name) {
+        return studentRepository.findByCourses_Name(name).stream().map(this::mapStudentToDTO).collect(Collectors.toList());
+    }
+
 
 
     /*

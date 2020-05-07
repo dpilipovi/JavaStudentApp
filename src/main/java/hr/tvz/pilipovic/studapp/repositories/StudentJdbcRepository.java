@@ -46,6 +46,11 @@ public class StudentJdbcRepository implements StudentRepository {
     }
 
     @Override
+    public List<Student> findByCourses_Name(String name) {
+        return null;
+    }
+
+    @Override
     public Optional<Student> save(StudentCommand student) {
 
         Student s = new Student(student.getFirstName(),student.getLastName(),student.getNumberOfECTS(),student.getDateOfBirth(),student.getJMBAG());

@@ -12,11 +12,15 @@ public interface CourseRepository {
 
     List<Course> findAll();
 
-    Optional<Course> findByName(String name);
+    List<Course> findByNameIgnoreCaseContaining(String name);
 
     Optional<Course> findByStudents_JMBAG(String jmbag);
 
     Optional<Course> editCourse(CourseCommand courseCommand);
 
     Optional<Course> findById(long id);
+
+    Optional<Course> findByName(String name);
+
+
 }

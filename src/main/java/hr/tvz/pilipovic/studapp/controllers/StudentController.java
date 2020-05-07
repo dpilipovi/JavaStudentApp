@@ -43,10 +43,15 @@ public class StudentController {
     }
 
     @GetMapping("/getStudentsByFirstName/{firstname}")
-    public List<StudentDTO>getStudentsByFirstname(@PathVariable String firstname){
-        System.out.println(firstname);
+    public List<StudentDTO> getStudentsByFirstname(@PathVariable String firstname){
         return studentService.findStudentByFirstName(firstname);
 
+    }
+
+    @GetMapping("/getStudentsByCourse/{name}")
+    public List<StudentDTO> getStudentsByCourse(@PathVariable String name)
+    {
+        return studentService.findByCourses_Name(name);
     }
 
     @PostMapping

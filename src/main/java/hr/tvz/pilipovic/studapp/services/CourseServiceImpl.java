@@ -29,11 +29,6 @@ public class CourseServiceImpl implements  CourseService{
     }
 
     @Override
-    public Optional<CourseDTO> findByName(String name) {
-        return Optional.of(mapCourseToDTO(courseRepository.findByName(name)));//.map(this::mapCourseToDTO);
-    }
-
-    @Override
     public List<CourseDTO> findByStudents_JMBAG(String jmbag) {
         return courseRepository.findByStudents_JMBAG(jmbag).stream().map(this::mapCourseToDTO).collect(Collectors.toList());
     }
@@ -46,5 +41,15 @@ public class CourseServiceImpl implements  CourseService{
     @Override
     public Optional<CourseDTO> findById(long id) {
         return Optional.of(mapCourseToDTO(courseRepository.findById(id)));
+    }
+
+    @Override
+    public List<CourseDTO> findCoursesByName(String name) {
+        return courseRepository.findByNameIgnoreCaseContaining(name).stream().map(this::mapCourseToDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<CourseDTO> findByName(String name) {
+        return Optional.of(mapCourseToDTO(courseRepository.findByName(name)));
     }
 }

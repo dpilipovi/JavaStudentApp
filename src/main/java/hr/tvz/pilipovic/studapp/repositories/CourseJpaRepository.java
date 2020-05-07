@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface CourseJpaRepository extends JpaRepository<Course, Long> {
 
-    Course findByName(String name);
+    List<Course> findByNameIgnoreCaseContaining(String name);
 
     Course save(CourseCommand course);
 
@@ -21,4 +21,6 @@ public interface CourseJpaRepository extends JpaRepository<Course, Long> {
     List<Course> findByStudents_JMBAG(String jmbag);
 
     Course findById(long id);
+
+    Course findByName(String name);
 }
