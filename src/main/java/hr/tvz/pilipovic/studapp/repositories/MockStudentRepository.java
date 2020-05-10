@@ -56,11 +56,12 @@ public class MockStudentRepository implements StudentRepository {
     }
 
     @Override
-    public Optional<Student> editEcts(int brojEcts, String JMBAG) {
+    public Optional<Student> editStudent(Student student, String JMBAG) {
 
-        int ects = MOCKED_STUDENTS.stream().filter(s -> JMBAG.equals(s.getJMBAG())).findFirst().get().getNumberOfECTS();
+       /* int ects = MOCKED_STUDENTS.stream().filter(s -> JMBAG.equals(s.getJMBAG())).findFirst().get().getNumberOfECTS();
         MOCKED_STUDENTS.stream().filter(s -> JMBAG.equals(s.getJMBAG())).findFirst().get().setNumberOfECTS(ects + brojEcts);
-        return findStudentByJMBAG(JMBAG);
+        return findStudentByJMBAG(JMBAG);*/
+       return null;
     }
 
     @Override

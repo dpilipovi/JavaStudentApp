@@ -69,9 +69,9 @@ public class StudentController {
     }
 
     @PutMapping("/{JMBAG}")
-    public ResponseEntity<StudentDTO> editEcts(@RequestBody int brojEcts, @PathVariable String JMBAG)
+    public ResponseEntity<StudentDTO> editStudent(@RequestBody StudentCommand studentCommand, @PathVariable String JMBAG)
     {
-        return studentService.editEcts(brojEcts,JMBAG)
+        return studentService.editStudent(studentCommand,JMBAG)
                 .map(
                         student -> ResponseEntity
                                 .status(HttpStatus.OK)

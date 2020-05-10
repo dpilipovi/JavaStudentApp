@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     private StudentDTO mapStudentToDTO(final Student student) {
-        return new StudentDTO(student.getJMBAG(), student.getNumberOfECTS(), shouldTuitionBePayed(student.getDateOfBirth()));
+        return new StudentDTO(student.getFirstName(),student.getLastName(),student.getJMBAG(), student.getNumberOfECTS(), shouldTuitionBePayed(student.getDateOfBirth()));
     }
 
     private boolean shouldTuitionBePayed(LocalDate dateOfBirth) {
@@ -49,18 +49,23 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-
     public long deleteStudentByJMBAG(String jmbag) {
          return studentRepository.deleteStudentByJMBAG(jmbag);
 
     }
 
     @Override
-    public Optional<StudentDTO> editEcts(int brojEcts, String JMBAG) {
+    public Optional<StudentDTO> editStudent(StudentCommand studentCommand, String JMBAG) {
         Student s = studentRepository.findStudentByJMBAG(JMBAG);
-        s.setNumberOfECTS(s.getNumberOfECTS()+brojEcts);
+
+        s.setFirstName(studentCommand.getFirstName());
+        s.setLastName(studentCommand.getLastName());
+        s.setJMBAG(studentCommand.getJMBAG());
+        s.setDateOfBirth(studentCommand.getDateOfBirth());
+        s.setNumberOfECTS(studentCommand.getNumberOfECTS());
+
         return Optional.of(mapStudentToDTO((studentRepository.save(s))));
-         //return Optional.of(mapStudentToDTO(studentRepository.editEcts(brojEcts, JMBAG)));//.map(this::mapStudentToDTO);
+
     }
 
     @Override

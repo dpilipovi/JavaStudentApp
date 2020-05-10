@@ -27,9 +27,10 @@ public interface StudentJpaRepository extends JpaRepository<Student, String> {
 
     Student save(Student student);
 
-    @Modifying
+   /* @Modifying
     @Query(value = "update students set numberofects = numberofects + :ects where jmbag = :jmbag",nativeQuery = true)
-    void editEcts(@Param("ects") int ects, @Param("jmbag") String jmbag);
+    void editEcts(@Param("ects") int ects, @Param("jmbag") String jmbag);*/
 
     List<Student> findByCourses_Name(String name);
+
 }

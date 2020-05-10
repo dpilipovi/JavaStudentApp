@@ -20,7 +20,7 @@ public interface StudentRepository {
 
     long deleteStudentByJMBAG(String jmbag);
 
-    Optional<Student> editEcts(int brojEcts, String JMBAG);
+    Optional<Student> editStudent(Student student, String JMBAG);
 
     List<Student> findStudentByFirstName(String firstname);
 

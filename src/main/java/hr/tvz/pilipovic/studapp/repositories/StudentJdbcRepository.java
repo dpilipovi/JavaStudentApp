@@ -74,10 +74,15 @@ public class StudentJdbcRepository implements StudentRepository {
     }
 
     @Override
+    public Optional<Student> editStudent(Student student, String JMBAG) {
+        return Optional.empty();
+    }
+
+   /* @Override
     public Optional<Student> editEcts(int brojEcts, String JMBAG) {
         jdbc.update("update students set numberOfEcts = numberOfEcts + ? where jmbag = ?", brojEcts, JMBAG);
         return findStudentByJMBAG(JMBAG);
-    }
+    }*/
 
     private Student mapRowToStudent(ResultSet rs, int rowNum) throws SQLException {
         Student student = new Student();

@@ -2,7 +2,6 @@ package hr.tvz.pilipovic.studapp.controllers;
 
 import hr.tvz.pilipovic.studapp.entities.CourseCommand;
 import hr.tvz.pilipovic.studapp.entities.CourseDTO;
-import hr.tvz.pilipovic.studapp.entities.StudentDTO;
 import hr.tvz.pilipovic.studapp.services.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +29,11 @@ public class CourseController {
 
     @GetMapping("/{jmbag}")
     public List<CourseDTO> getCoursesByStudentJmbag(@PathVariable String jmbag){
+        return courseService.findByStudents_JMBAG(jmbag);
+    }
+
+    @GetMapping(params = "JMBAG")
+    public List<CourseDTO> getCoursesByStudentJmbag2(@RequestParam String jmbag){
         return courseService.findByStudents_JMBAG(jmbag);
     }
 
