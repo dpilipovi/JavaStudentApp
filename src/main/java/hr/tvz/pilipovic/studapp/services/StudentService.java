@@ -21,7 +21,7 @@ public interface StudentService {
 
     long deleteStudentByJMBAG(String jmbag);
 
-    Optional<StudentDTO> editStudent(StudentCommand studentCommand, String Jmbag);
+    Optional<StudentDTO> editStudent(StudentCommand studentCommand);
 
     List<StudentDTO> findStudentByFirstName(String firstname);
 

@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
 
     private static final int YEARS_AFTER_WHICH_TUITION_SHOULD_BE_PAYED = 26;
-   // private final StudentJdbcRepository studentRepository;
     private final StudentJpaRepository studentRepository;
 
     public StudentServiceImpl(StudentJpaRepository studentRepository) {
@@ -35,7 +34,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     private StudentDTO mapStudentToDTO(final Student student) {
-        return new StudentDTO(student.getFirstName(),student.getLastName(),student.getJMBAG(), student.getNumberOfECTS(), shouldTuitionBePayed(student.getDateOfBirth()));
+        return new StudentDTO(student.getFirstName(),student.getLastName(),student.getJMBAG(), student.getNumberOfECTS(), shouldTuitionBePayed(student.getDateOfBirth()), student.getDateOfBirth().toString());
     }
 
     private boolean shouldTuitionBePayed(LocalDate dateOfBirth) {
@@ -55,12 +54,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Optional<StudentDTO> editStudent(StudentCommand studentCommand, String JMBAG) {
-        Student s = studentRepository.findStudentByJMBAG(JMBAG);
+    public Optional<StudentDTO> editStudent(StudentCommand studentCommand) {
+        Student s = studentRepository.findStudentByJMBAG(studentCommand.getJMBAG());
 
         s.setFirstName(studentCommand.getFirstName());
         s.setLastName(studentCommand.getLastName());
-        s.setJMBAG(studentCommand.getJMBAG());
         s.setDateOfBirth(studentCommand.getDateOfBirth());
         s.setNumberOfECTS(studentCommand.getNumberOfECTS());
 

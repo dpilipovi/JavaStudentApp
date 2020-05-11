@@ -15,6 +15,7 @@ public class StudentDTO {
     private String JMBAG;
     private Integer numberOfECTS;
     private boolean tuitionShouldBePaid;
+    private String dateOfBirth;
 
 
 }

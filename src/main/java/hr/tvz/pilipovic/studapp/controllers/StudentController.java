@@ -14,7 +14,7 @@ import java.util.List;
 //jdbc:h2:mem:testdb
 @RestController
 @RequestMapping("student")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins="http://localhost:4200")
 public class StudentController {
 
     public final StudentService  studentService;
@@ -68,10 +68,10 @@ public class StudentController {
                 );
     }
 
-    @PutMapping("/{JMBAG}")
-    public ResponseEntity<StudentDTO> editStudent(@RequestBody StudentCommand studentCommand, @PathVariable String JMBAG)
+    @PutMapping
+    public ResponseEntity<StudentDTO> editStudent(@RequestBody StudentCommand studentCommand)
     {
-        return studentService.editStudent(studentCommand,JMBAG)
+        return studentService.editStudent(studentCommand)
                 .map(
                         student -> ResponseEntity
                                 .status(HttpStatus.OK)
