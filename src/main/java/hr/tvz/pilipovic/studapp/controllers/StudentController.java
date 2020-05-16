@@ -6,6 +6,7 @@ import hr.tvz.pilipovic.studapp.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,11 +24,13 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping()
     public List<StudentDTO> getAllStudents(){
         return studentService.findAll();
     }
 
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/{JMBAG}")
     public ResponseEntity<StudentDTO> getStudent(@PathVariable String JMBAG){
         return studentService.findStudentByJMBAG(JMBAG)
@@ -42,18 +45,21 @@ public class StudentController {
                 );
     }
 
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/getStudentsByFirstName/{firstname}")
     public List<StudentDTO> getStudentsByFirstname(@PathVariable String firstname){
         return studentService.findStudentByFirstName(firstname);
 
     }
 
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/getStudentsByCourse/{name}")
     public List<StudentDTO> getStudentsByCourse(@PathVariable String name)
     {
         return studentService.findByCourses_Name(name);
     }
 
+    @Secured({"ROLE_ADMIN"})
     @PostMapping
     public ResponseEntity<StudentDTO> addStudent(@Valid @RequestBody final StudentCommand student){
         return studentService.save(student)
@@ -68,6 +74,7 @@ public class StudentController {
                 );
     }
 
+    @Secured({"ROLE_ADMIN"})
     @PutMapping
     public ResponseEntity<StudentDTO> editStudent(@RequestBody StudentCommand studentCommand)
     {
@@ -83,6 +90,7 @@ public class StudentController {
                 );
     }
 
+    @Secured({"ROLE_ADMIN"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{JMBAG}")
     public ResponseEntity delete(@PathVariable String JMBAG){

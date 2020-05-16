@@ -5,6 +5,7 @@ import hr.tvz.pilipovic.studapp.services.LecturerService;
 import hr.tvz.pilipovic.studapp.services.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,12 +22,14 @@ public class LecturerController {
         this.lecturerService = lecturerService;
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping()
     public List<Lecturer> getLecturers()
     {
         return lecturerService.getLecturers();
     }
 
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/{id}")
     public ResponseEntity<Lecturer> getLecturers(@PathVariable long id)
     {
