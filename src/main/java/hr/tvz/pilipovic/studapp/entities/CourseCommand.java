@@ -22,6 +22,8 @@ public class CourseCommand {
         this.numberOfEcts = numberOfEcts;
     }
 
+    public CourseCommand(){}
+
     public int getId() {
         return id;
     }

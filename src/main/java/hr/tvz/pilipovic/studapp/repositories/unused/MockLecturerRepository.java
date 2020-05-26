@@ -1,4 +1,4 @@
-package hr.tvz.pilipovic.studapp.repositories;
+/*package hr.tvz.pilipovic.studapp.repositories;
 
 import hr.tvz.pilipovic.studapp.entities.Lecturer;
 import hr.tvz.pilipovic.studapp.entities.Student;
@@ -30,4 +30,4 @@ public class MockLecturerRepository implements LecturerRepository {
     public Optional<Lecturer> getLecturerById(long id) {
         return MOCKED_LECTURERS.stream().filter(l -> l.getId() == id).findAny();
     }
-}
+}*/

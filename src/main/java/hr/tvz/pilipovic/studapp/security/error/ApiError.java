@@ -73,9 +73,9 @@ public class ApiError {
                 fieldError.getDefaultMessage());
     }
 
-    void addValidationErrors(List<FieldError> fieldErrors) {
+  /*  void addValidationErrors(List<FieldError> fieldErrors) {
         fieldErrors.forEach(this::addValidationError);
-    }
+    }*/
 
     private void addValidationError(ObjectError objectError) {
         this.addValidationError(
@@ -83,9 +83,9 @@ public class ApiError {
                 objectError.getDefaultMessage());
     }
 
-    void addValidationError(List<ObjectError> globalErrors) {
+  /*  void addValidationError(List<ObjectError> globalErrors) {
         globalErrors.forEach(this::addValidationError);
-    }
+    }*/
 
     private void addValidationError(ConstraintViolation<?> cv) {
         this.addValidationError(
@@ -95,9 +95,9 @@ public class ApiError {
                 cv.getMessage());
     }
 
-    void addValidationErrors(Set<ConstraintViolation<?>> constraintViolations) {
+   /* void addValidationErrors(Set<ConstraintViolation<?>> constraintViolations) {
         constraintViolations.forEach(this::addValidationError);
-    }
+    }*/
 
     public HttpStatus getStatus() {
         return status;

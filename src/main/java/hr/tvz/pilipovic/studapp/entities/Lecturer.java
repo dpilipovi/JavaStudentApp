@@ -1,4 +1,4 @@
-package hr.tvz.pilipovic.studapp.entities;
+/*package hr.tvz.pilipovic.studapp.entities;
 
 public class Lecturer {
 
@@ -46,3 +46,4 @@ public class Lecturer {
         this.email = email;
     }
 }
+*/

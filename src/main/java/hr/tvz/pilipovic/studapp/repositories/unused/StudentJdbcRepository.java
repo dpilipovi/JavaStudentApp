@@ -1,5 +1,6 @@
-package hr.tvz.pilipovic.studapp.repositories;
+package hr.tvz.pilipovic.studapp.repositories.unused;
 
+/*
 import hr.tvz.pilipovic.studapp.entities.Student;
 import hr.tvz.pilipovic.studapp.entities.StudentCommand;
 import org.springframework.context.annotation.Primary;
@@ -83,7 +84,7 @@ public class StudentJdbcRepository implements StudentRepository {
         jdbc.update("update students set numberOfEcts = numberOfEcts + ? where jmbag = ?", brojEcts, JMBAG);
         return findStudentByJMBAG(JMBAG);
     }*/
-
+/*
     private Student mapRowToStudent(ResultSet rs, int rowNum) throws SQLException {
         Student student = new Student();
         student.setJMBAG(rs.getString("jmbag"));
@@ -95,3 +96,4 @@ public class StudentJdbcRepository implements StudentRepository {
         return student;
     }
 }
+*/

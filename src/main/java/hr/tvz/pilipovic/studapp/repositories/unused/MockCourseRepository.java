@@ -1,4 +1,4 @@
-package hr.tvz.pilipovic.studapp.repositories;
+/*package hr.tvz.pilipovic.studapp.repositories;
 
 import hr.tvz.pilipovic.studapp.entities.Course;
 import hr.tvz.pilipovic.studapp.entities.CourseCommand;
@@ -22,7 +22,7 @@ public class MockCourseRepository implements  CourseRepository {
      *
      * Metoda bi vracala broj courseva tako da pri dodavanju novog course mu mozemo dati novi id koji nije zauzet
      */
-    private int getNumberOfCourses()
+ /*   private int getNumberOfCourses()
     {
         return MOCKED_COURSES.size();
     }
@@ -64,4 +64,4 @@ public class MockCourseRepository implements  CourseRepository {
         return findById(courseCommand.getId());
 
     }
-}
+}*/

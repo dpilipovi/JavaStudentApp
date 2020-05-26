@@ -1,10 +1,12 @@
 package hr.tvz.pilipovic.studapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,7 +29,8 @@ public class Student implements Serializable {
             joinColumns = { @JoinColumn(name = "student_jmbag" /*, referencedColumnName = "JMBAG", nullable = false*/), },
             inverseJoinColumns = { @JoinColumn(name = "course_id" /*, referencedColumnName = "id", nullable = false*/) }
     )
-    private List<Course> courses;
+    @JsonIgnoreProperties("students")
+    private List<Course> courses = new ArrayList<>();
 
     public List<Course> getCourses() {
         return courses;

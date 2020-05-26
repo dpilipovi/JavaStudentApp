@@ -1,5 +1,5 @@
-package hr.tvz.pilipovic.studapp.services;
-
+package hr.tvz.pilipovic.studapp.services.unused;
+/*
 import hr.tvz.pilipovic.studapp.entities.Lecturer;
 
 import java.util.List;
@@ -11,3 +11,4 @@ public interface LecturerService {
 
     List<Lecturer> getLecturers();
 }
+*/

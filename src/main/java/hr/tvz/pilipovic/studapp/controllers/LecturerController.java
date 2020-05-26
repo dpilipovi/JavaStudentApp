@@ -1,5 +1,5 @@
 package hr.tvz.pilipovic.studapp.controllers;
-
+/*
 import hr.tvz.pilipovic.studapp.entities.Lecturer;
 import hr.tvz.pilipovic.studapp.services.LecturerService;
 import hr.tvz.pilipovic.studapp.services.StudentService;
@@ -16,6 +16,8 @@ import java.util.Optional;
 @CrossOrigin("http://localhost:4200")
 public class LecturerController {
 
+    // ne koristi se
+    /*
     public final LecturerService lecturerService;
 
     public LecturerController(LecturerService lecturerService) {
@@ -44,4 +46,6 @@ public class LecturerController {
                                 .build()
                 );
     }
-}
+
+
+}*/

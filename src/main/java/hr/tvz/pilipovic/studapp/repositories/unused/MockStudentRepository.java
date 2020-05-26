@@ -1,5 +1,5 @@
-package hr.tvz.pilipovic.studapp.repositories;
-
+package hr.tvz.pilipovic.studapp.repositories.unused;
+/*
 import hr.tvz.pilipovic.studapp.entities.Student;
 import hr.tvz.pilipovic.studapp.entities.StudentCommand;
 import hr.tvz.pilipovic.studapp.entities.StudentDTO;
@@ -61,7 +61,7 @@ public class MockStudentRepository implements StudentRepository {
        /* int ects = MOCKED_STUDENTS.stream().filter(s -> JMBAG.equals(s.getJMBAG())).findFirst().get().getNumberOfECTS();
         MOCKED_STUDENTS.stream().filter(s -> JMBAG.equals(s.getJMBAG())).findFirst().get().setNumberOfECTS(ects + brojEcts);
         return findStudentByJMBAG(JMBAG);*/
-       return null;
+  /*     return null;
     }
 
     @Override
@@ -88,5 +88,5 @@ public class MockStudentRepository implements StudentRepository {
 
 }
 
-
+*/
 

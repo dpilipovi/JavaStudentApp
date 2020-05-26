@@ -3,7 +3,7 @@ package hr.tvz.pilipovic.studapp.services;
 import hr.tvz.pilipovic.studapp.entities.Student;
 import hr.tvz.pilipovic.studapp.entities.StudentCommand;
 import hr.tvz.pilipovic.studapp.entities.StudentDTO;
-import hr.tvz.pilipovic.studapp.repositories.StudentJdbcRepository;
+
 import hr.tvz.pilipovic.studapp.repositories.StudentJpaRepository;
 import hr.tvz.pilipovic.studapp.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -30,11 +30,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<StudentDTO> findStudentByJMBAG(final String JMBAG) {
-        return Optional.of(mapStudentToDTO(studentRepository.findStudentByJMBAG(JMBAG)));//.map(this::mapStudentToDTO);
+        return Optional.of(mapStudentToDTO(studentRepository.findStudentByJMBAG(JMBAG)));
     }
 
     private StudentDTO mapStudentToDTO(final Student student) {
-        return new StudentDTO(student.getFirstName(),student.getLastName(),student.getJMBAG(), student.getNumberOfECTS(), shouldTuitionBePayed(student.getDateOfBirth()), student.getDateOfBirth().toString());
+        return new StudentDTO(student.getFirstName(),student.getLastName(),student.getJMBAG(), student.getNumberOfECTS(), shouldTuitionBePayed(student.getDateOfBirth()), student.getDateOfBirth().toString(), student.getCourses());
     }
 
     private boolean shouldTuitionBePayed(LocalDate dateOfBirth) {

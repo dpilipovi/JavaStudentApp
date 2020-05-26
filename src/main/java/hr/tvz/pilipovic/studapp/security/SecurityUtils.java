@@ -15,7 +15,7 @@ public final class SecurityUtils {
     }
 
     public static Optional<String> getCurrentUserUsername() {
-        /*GlobalSecurityContextHolderStrategy*/SecurityContext securityContext = SecurityContextHolder.getContext();
+        SecurityContext securityContext = SecurityContextHolder.getContext();
         return Optional.ofNullable(extractPrincipal(securityContext.getAuthentication()));
     }
 
@@ -40,13 +40,13 @@ public final class SecurityUtils {
                 .map(authentication -> (String) authentication.getCredentials());
     }
 
-    public static boolean isCurrentUserInRole(String authority) {
+   /* public static boolean isCurrentUserInRole(String authority) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication != null && getAuthorities(authentication).anyMatch(authority::equals);
     }
 
     private static Stream<String> getAuthorities(Authentication authentication) {
         return authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority);
-    }
+    }*/
     
 }

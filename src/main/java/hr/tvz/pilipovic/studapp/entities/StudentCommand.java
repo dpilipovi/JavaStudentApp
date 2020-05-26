@@ -35,6 +35,14 @@ public class StudentCommand implements Serializable {
     private Integer numberOfECTS;
 
 
+    public StudentCommand(@NotBlank(message = "First name must not be empty") String firstName, @NotBlank(message = "Last name must not be empty") String lastName, @NotBlank(message = "JMBAG must not be empty") @Pattern(message = "JMBAG must have 10 digits", regexp = "[\\d]{10}") String JMBAG, @NotNull(message = "Date of birth must be entered") @Past(message = "Date of birth must be in the past") LocalDate dateOfBirth, @NotNull(message = "Number of ECTS points must be entered") @PositiveOrZero(message = "Number of ECTS must be entered as a positive integer") @Max(message = "Number of ECTS can not be higher than 480", value = 480) Integer numberOfECTS) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.JMBAG = JMBAG;
+        this.dateOfBirth = dateOfBirth;
+        this.numberOfECTS = numberOfECTS;
+    }
+
     public StudentCommand(@NotBlank(message = "First name must not be empty") String firstName, @NotBlank(message = "Last name must not be empty") String lastName, @NotBlank(message = "JMBAG must not be empty") @Pattern(message = "JMBAG must have 10 digits", regexp = "[\\d]{10}") String JMBAG, @NotNull(message = "Date of birth must be entered") @Past(message = "Date of birth must be in the past") String dateOfBirth, @NotNull(message = "Number of ECTS points must be entered") @PositiveOrZero(message = "Number of ECTS must be entered as a positive integer") @Max(message = "Number of ECTS can not be higher than 480", value = 480) Integer numberOfECTS) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,6 +50,9 @@ public class StudentCommand implements Serializable {
         this.dateOfBirth = LocalDate.parse(dateOfBirth,df); // salje se u stringu pa parsa u localdate zbog errora
         this.numberOfECTS = numberOfECTS;
     }
+
+
+    public StudentCommand(){}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

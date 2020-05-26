@@ -1,5 +1,5 @@
-package hr.tvz.pilipovic.studapp.repositories;
-
+package hr.tvz.pilipovic.studapp.repositories.unused;
+/*
 import hr.tvz.pilipovic.studapp.entities.Lecturer;
 
 import java.util.List;
@@ -11,3 +11,4 @@ public interface LecturerRepository {
 
     Optional<Lecturer> getLecturerById(long id);
 }
+*/

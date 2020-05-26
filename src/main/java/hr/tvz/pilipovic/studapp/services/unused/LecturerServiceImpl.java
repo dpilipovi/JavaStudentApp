@@ -1,5 +1,5 @@
-package hr.tvz.pilipovic.studapp.services;
-
+package hr.tvz.pilipovic.studapp.services.unused;
+/*
 import hr.tvz.pilipovic.studapp.entities.Lecturer;
 import hr.tvz.pilipovic.studapp.repositories.LecturerRepository;
 import hr.tvz.pilipovic.studapp.repositories.StudentRepository;
@@ -27,3 +27,4 @@ public class LecturerServiceImpl implements  LecturerService{
        return lecturerRepository.findAll();
     }
 }
+*/
