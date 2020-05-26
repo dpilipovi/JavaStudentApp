@@ -83,14 +83,27 @@ class CourseControllerTest {
         c.setName("AndroidTest");
         c.setNumberOfEcts(6);
 
-        //da se pokrije lines covered
+        Course course = new Course();
+        course.setId(new Long(2));
+        course.setName("AndroidTest");
+        course.setNumberOfEcts(6);
+
+        //Da se testiraju geteri i seteri
         Long id = c.getId();
         String name = c.getName();
         int ects = c.getNumberOfEcts();
 
+        Long id2 = course.getId();
+        String name2= course.getName();
+        int ects2 = course.getNumberOfEcts();
+
         assertNotNull(id);
         assertNotNull(name);
         assertNotNull(ects);
+
+        assertNotNull(id2);
+        assertNotNull(name2);
+        assertNotNull(ects2);
 
 
 

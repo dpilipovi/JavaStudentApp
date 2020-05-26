@@ -124,6 +124,15 @@ class StudentControllerTest {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
         StudentCommand s = new StudentCommand( "Pero", "Peric","0246077777" ,LocalDate.parse("01.01.1999.",df),160);
 
+
+        String firstname= s.getFirstName();
+        String lastName= s.getLastName();
+        String jmbag= s.getJMBAG();
+        int ects = s.getNumberOfECTS();
+        LocalDate d = s.getDateOfBirth();
+
+
+
         this.mockMvc.perform( MockMvcRequestBuilders
                 .put("/student")
                 .contentType(MediaType.APPLICATION_JSON)
