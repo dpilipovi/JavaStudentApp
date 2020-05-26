@@ -3,6 +3,7 @@ package hr.tvz.pilipovic.studapp.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hr.tvz.pilipovic.studapp.entities.Student;
 import hr.tvz.pilipovic.studapp.entities.StudentCommand;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -37,6 +38,7 @@ class StudentControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
 
     @Test
     void getAllStudents() throws Exception {
@@ -93,13 +95,22 @@ class StudentControllerTest {
 
     }
 
+    //@DirtiesContext  -- ako se ukljuci @DirtiesContext iz nekog razloga dode do errora ( java.lang.IllegalStateException: Failed to load ApplicationContext)
     @Test
     @WithMockUser(username = "admin", password = "adminpassword", roles = {"ADMIN"})
     void addStudent() throws Exception {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+        StudentCommand sc = new StudentCommand();
+        sc.setFirstName("Marko");
+        sc.setLastName("Markic");
+        sc.setJMBAG("0246076711");
+        sc.setDateOfBirth(LocalDate.parse("01.01.1999.",df));
+        sc.setNumberOfECTS(25);
         this.mockMvc.perform( MockMvcRequestBuilders
                 .post("/student")
-                .content(objectMapper.writeValueAsString(new StudentCommand("Marko", "Markic", "0246076711",  LocalDate.parse("01.01.1999.",df), 25)))//.content(asJsonString(new StudentCommand("Marko", "Markic", "0246076711", LocalDate.now(), 25)))
+                //.with(user("admin").password("adminpassword")roles("ADMIN"))
+                //.content(objectMapper.writeValueAsString(new StudentCommand("Marko", "Markic", "0246076711",  LocalDate.parse("01.01.1999.",df), 25)))//.content(asJsonString(new StudentCommand("Marko", "Markic", "0246076711", LocalDate.now(), 25)))
+                .content(objectMapper.writeValueAsString(sc))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
@@ -108,6 +119,7 @@ class StudentControllerTest {
 
     @Test
     @WithMockUser(username = "admin", password = "adminpassword", roles = {"ADMIN"})
+    //@DirtiesContext
     void editStudent() throws Exception {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
         StudentCommand s = new StudentCommand( "Pero", "Peric","0246077777" ,LocalDate.parse("01.01.1999.",df),160);
@@ -124,10 +136,18 @@ class StudentControllerTest {
 
     @Test
     @WithMockUser(username = "admin", password = "adminpassword", roles = {"ADMIN"})
+    //@DirtiesContext
     void delete() throws Exception {
+
+        //OK
         this.mockMvc.perform( MockMvcRequestBuilders.delete("/student/{JMBAG}", "0246033333"))
                 //.with(user("admin").password("adminpassword").roles("ADMIN")))
                 .andExpect(status().isOk());
+
+        //NOT FOUND
+        this.mockMvc.perform( MockMvcRequestBuilders.delete("/student/{JMBAG}", "fake"))
+                //.with(user("admin").password("adminpassword").roles("ADMIN")))
+                .andExpect(status().isNotFound());
     }
 
     public static String asJsonString(final Object obj) {

@@ -14,7 +14,7 @@ public interface CourseJpaRepository extends JpaRepository<Course, Long> {
 
     List<Course> findByNameIgnoreCaseContaining(String name);
 
-    Course save(CourseCommand course);
+   // Course save(CourseCommand course);
 
     Course save(Course course);
 

@@ -13,7 +13,7 @@ public interface StudentRepository {
 
 
     List<Student> findAll();
-
+/*
     Optional<Student> findStudentByJMBAG(String JMBAG);
 
     Optional<Student> save(StudentCommand student);
@@ -24,5 +24,5 @@ public interface StudentRepository {
 
     List<Student> findStudentByFirstName(String firstname);
 
-    List<Student> findByCourses_Name(String name);
+    List<Student> findByCourses_Name(String name);*/
 }

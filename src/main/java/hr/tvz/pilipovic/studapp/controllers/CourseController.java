@@ -63,7 +63,7 @@ public class CourseController {
                 );
     }
 
-/*
+
     @Secured({"ROLE_ADMIN"})
     @PutMapping()
     public ResponseEntity<CourseDTO> editCourse(@RequestBody CourseCommand courseCommand)
@@ -78,5 +78,5 @@ public class CourseController {
                                 .status(HttpStatus.NOT_FOUND)
                                 .build()
                 );
-    }*/
+    }
 }

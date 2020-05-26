@@ -23,15 +23,17 @@ public class Course implements Serializable {
     @ManyToMany(targetEntity = Student.class, mappedBy = "courses")
     private List<Student> students;
 
-    public List<Student> getStudents() {
+    /*public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+     */
+
+     public void setStudents(List<Student> students) {
         this.students = students;
     }
 
-    public Course(int id, String name, int numberOfEcts) {
+    public Course(long id, String name, int numberOfEcts) {
         this.id = id;
         this.name = name;
         this.numberOfEcts = numberOfEcts;

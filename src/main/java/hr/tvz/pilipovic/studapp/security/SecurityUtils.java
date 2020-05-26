@@ -32,13 +32,13 @@ public final class SecurityUtils {
     }
 
 
-    public static Optional<String> getCurrentUserJWT() {
+  /*  public static Optional<String> getCurrentUserJWT() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         return Optional
                 .ofNullable(securityContext.getAuthentication())
                 .filter(authentication -> authentication.getCredentials() instanceof String)
                 .map(authentication -> (String) authentication.getCredentials());
-    }
+    }*/
 
    /* public static boolean isCurrentUserInRole(String authority) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

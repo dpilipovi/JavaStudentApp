@@ -1,6 +1,8 @@
 package hr.tvz.pilipovic.studapp.services;
 
-import hr.tvz.pilipovic.studapp.entities.*;
+import hr.tvz.pilipovic.studapp.entities.Course;
+import hr.tvz.pilipovic.studapp.entities.CourseCommand;
+import hr.tvz.pilipovic.studapp.entities.CourseDTO;
 import hr.tvz.pilipovic.studapp.repositories.CourseJpaRepository;
 import hr.tvz.pilipovic.studapp.repositories.CourseRepository;
 import hr.tvz.pilipovic.studapp.repositories.StudentRepository;
@@ -33,12 +35,13 @@ public class CourseServiceImpl implements  CourseService{
         return courseRepository.findByStudents_JMBAG(jmbag).stream().map(this::mapCourseToDTO).collect(Collectors.toList());
     }
 
-    /*@Override
-    public Optional<CourseDTO> editCourse(CourseCommand courseCommand) {
-        return Optional.of(mapCourseToDTO(courseRepository.save(courseCommand)));//.map(this::mapCourseToDTO);
+    @Override
+    public Optional<CourseDTO> editCourse(final CourseCommand courseCommand) {
+        Course c = new Course(courseCommand.getId(),courseCommand.getName(),courseCommand.getNumberOfEcts());
+        return Optional.of(mapCourseToDTO(courseRepository.save(c)));//.map(this::mapCourseToDTO);
     }
 
-    @Override
+   /* @Override
     public Optional<CourseDTO> findById(long id) {
         return Optional.of(mapCourseToDTO(courseRepository.findById(id)));
     }*/

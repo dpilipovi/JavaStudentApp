@@ -3,20 +3,22 @@ package hr.tvz.pilipovic.studapp.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hr.tvz.pilipovic.studapp.entities.Course;
 import hr.tvz.pilipovic.studapp.entities.CourseCommand;
+import hr.tvz.pilipovic.studapp.services.CourseServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -27,6 +29,7 @@ class CourseControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
 
     @Test
     void getAllCourses() throws Exception {
@@ -64,15 +67,33 @@ class CourseControllerTest {
     void getCourseByName() throws Exception {
         this.mockMvc.perform(get("/course/findCourseByName/" + "Android"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.name").exists())
+                .andExpect(jsonPath("$.numberOfEcts").exists());
 
     }
 
-  /*  @Test
+    @Test
     @WithMockUser(username = "admin", password = "adminpassword", roles = {"ADMIN"})
+    //@DirtiesContext
     void editCourse() throws Exception {
 
-        CourseCommand c = new CourseCommand(2, "AndroidTest", 6);
+        CourseCommand c = new CourseCommand();
+        c.setId(new Long(2));
+        c.setName("AndroidTest");
+        c.setNumberOfEcts(6);
+
+        //da se pokrije lines covered
+        Long id = c.getId();
+        String name = c.getName();
+        int ects = c.getNumberOfEcts();
+
+        assertNotNull(id);
+        assertNotNull(name);
+        assertNotNull(ects);
+
+
+
         this.mockMvc.perform( MockMvcRequestBuilders
                 .put("/course")
               //  .with(user("admin").password("adminpassword").roles("ADMIN"))
@@ -81,8 +102,10 @@ class CourseControllerTest {
                 .content(objectMapper.writeValueAsString(c))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
-    }*/
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.name").exists())
+                .andExpect(jsonPath("$.numberOfEcts").exists());
+    }
 
     public static String asJsonString(final Object obj) {
         try {

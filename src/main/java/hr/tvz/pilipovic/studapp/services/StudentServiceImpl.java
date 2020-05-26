@@ -23,6 +23,7 @@ public class StudentServiceImpl implements StudentService {
         this.studentRepository = studentRepository;
     }
 
+
     @Override
     public List<StudentDTO> findAll() {
         return studentRepository.findAll().stream().map(this::mapStudentToDTO).collect(Collectors.toList());

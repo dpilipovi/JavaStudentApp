@@ -50,7 +50,7 @@ public class ApiError {
         this.debugMessage = ex.getLocalizedMessage();
     }
 
-    private void addSubError(ApiSubError subError) {
+   /* private void addSubError(ApiSubError subError) {
         if (subErrors == null) {
             subErrors = new ArrayList<>();
         }
@@ -77,7 +77,7 @@ public class ApiError {
         fieldErrors.forEach(this::addValidationError);
     }*/
 
-    private void addValidationError(ObjectError objectError) {
+    /*private void addValidationError(ObjectError objectError) {
         this.addValidationError(
                 objectError.getObjectName(),
                 objectError.getDefaultMessage());
@@ -87,7 +87,7 @@ public class ApiError {
         globalErrors.forEach(this::addValidationError);
     }*/
 
-    private void addValidationError(ConstraintViolation<?> cv) {
+   /* private void addValidationError(ConstraintViolation<?> cv) {
         this.addValidationError(
                 cv.getRootBeanClass().getSimpleName(),
                 ((PathImpl) cv.getPropertyPath()).getLeafNode().asString(),
@@ -99,7 +99,7 @@ public class ApiError {
         constraintViolations.forEach(this::addValidationError);
     }*/
 
-    public HttpStatus getStatus() {
+   /* public HttpStatus getStatus() {
         return status;
     }
 
@@ -118,14 +118,14 @@ public class ApiError {
     public String getMessage() {
         return message;
     }
-
+*/
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public String getDebugMessage() {
+  /*  public String getDebugMessage() {
         return debugMessage;
-    }
+    }*/
 
     public void setDebugMessage(String debugMessage) {
         this.debugMessage = debugMessage;
@@ -135,14 +135,14 @@ public class ApiError {
         return subErrors;
     }
 
-    public void setSubErrors(List<ApiSubError> subErrors) {
+   /* public void setSubErrors(List<ApiSubError> subErrors) {
         this.subErrors = subErrors;
-    }
+    }*/
 
     abstract class ApiSubError {
 
     }
-
+/*
     class ApiValidationError extends ApiSubError {
         private String object;
         private String field;
@@ -208,5 +208,5 @@ public class ApiError {
         public int hashCode() {
             return Objects.hash(object, field, rejectedValue, message);
         }
-    }
+    }*/
 }

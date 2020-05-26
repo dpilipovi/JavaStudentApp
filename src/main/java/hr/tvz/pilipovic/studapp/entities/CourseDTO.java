@@ -12,7 +12,6 @@ public class CourseDTO {
         this.numberOfEcts = numberOfEcts;
     }
 
-    public CourseDTO(){}
 
     public String getName() {
         return name;
