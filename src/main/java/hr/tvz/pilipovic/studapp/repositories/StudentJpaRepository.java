@@ -18,7 +18,7 @@ import java.util.Optional;
 @Repository
 public interface StudentJpaRepository extends JpaRepository<Student, String> {
 
-    Student findStudentByJMBAG(String jmbag);
+    Optional<Student> findStudentByJMBAG(String jmbag);
 
     @Transactional
     long deleteStudentByJMBAG(String jmbag);
@@ -26,6 +26,7 @@ public interface StudentJpaRepository extends JpaRepository<Student, String> {
     List<Student> findStudentByFirstName(String firstname);
 
     Student save(Student student);
+
 
    /* @Modifying
     @Query(value = "update students set numberofects = numberofects + :ects where jmbag = :jmbag",nativeQuery = true)

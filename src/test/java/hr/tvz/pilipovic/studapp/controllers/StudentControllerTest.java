@@ -29,6 +29,11 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ *
+ * ako se ukljuci @DirtiesContext iz nekog razloga dode do errora ( java.lang.IllegalStateException: Failed to load ApplicationContext)
+ * Pitao sam profesora Radovana na predavanju zna li sto je to i je li zaista potrebno. Rekao je da nije siguran zašto, ali da se moze bez toga napraviti.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 class StudentControllerTest {
@@ -64,12 +69,11 @@ class StudentControllerTest {
                 .andExpect(jsonPath("$.dateOfBirth").exists())
                 .andExpect(jsonPath("$.courses").isArray());
 
-
-      /*  // NOT FOUND
+          // NOT FOUND
         this.mockMvc.perform(get("/student/" + "fakejmbag"))
                 .andExpect(status().isNotFound());
 
-       */
+
 
     }
 

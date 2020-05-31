@@ -1,5 +1,6 @@
 package hr.tvz.pilipovic.studapp.controllers;
 
+import hr.tvz.pilipovic.studapp.entities.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -41,6 +42,29 @@ class UserControllerTest {
                 get("/api/user/current-user")
         )
                 .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void userGettersAndSettersTest()
+    {
+        User user = new User();
+
+        user.setFirstName("Test");
+        user.setLastName("Test");
+        user.setId(3);
+        user.setPassword("testpassword");
+
+        String firstname = user.getFirstName();
+        String lastname = user.getLastName();
+        Long id = user.getId();
+        String pass = user.getPassword();
+
+        assertNotNull(id);
+        assertNotNull(firstname);
+        assertNotNull(lastname);
+        assertNotNull(pass);
+
+
     }
 
 }

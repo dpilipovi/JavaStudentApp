@@ -31,8 +31,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<StudentDTO> findStudentByJMBAG(final String JMBAG) {
-        return Optional.of(mapStudentToDTO(studentRepository.findStudentByJMBAG(JMBAG)));
-    }
+        return studentRepository.findStudentByJMBAG(JMBAG).map(this::mapStudentToDTO);
+}
 
     private StudentDTO mapStudentToDTO(final Student student) {
         return new StudentDTO(student.getFirstName(),student.getLastName(),student.getJMBAG(), student.getNumberOfECTS(), shouldTuitionBePayed(student.getDateOfBirth()), student.getDateOfBirth().toString(), student.getCourses());
@@ -56,7 +56,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<StudentDTO> editStudent(StudentCommand studentCommand) {
-        Student s = studentRepository.findStudentByJMBAG(studentCommand.getJMBAG());
+        Optional<Student> optional =studentRepository.findStudentByJMBAG(studentCommand.getJMBAG());
+
+        Student s = optional.get();
 
         s.setFirstName(studentCommand.getFirstName());
         s.setLastName(studentCommand.getLastName());
